@@ -1,0 +1,14 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Velocity Learning</title>
+  <desc id="desc">Velocity Learning branded preview placeholder.</desc>
+  <rect width="1200" height="630" fill="#F8FAFC"/>
+  <rect x="72" y="72" width="1056" height="486" rx="32" fill="#FFFFFF" stroke="#D9E2EC" stroke-width="2"/>
+  <rect x="130" y="142" width="118" height="118" rx="28" fill="#176B87"/>
+  <text x="189" y="222" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="72" font-weight="800" fill="#FFFFFF">V</text>
+  <text x="286" y="190" font-family="Inter, Arial, sans-serif" font-size="56" font-weight="800" fill="#102A43">Velocity Learning</text>
+  <text x="286" y="250" font-family="Inter, Arial, sans-serif" font-size="34" font-weight="500" fill="#486581">Skip job portals. Get real replies.</text>
+  <rect x="130" y="340" width="300" height="20" rx="10" fill="#2BB3A3"/>
+  <rect x="130" y="386" width="720" height="22" rx="11" fill="#D9E2EC"/>
+  <rect x="130" y="432" width="620" height="22" rx="11" fill="#D9E2EC"/>
+  <rect x="130" y="478" width="480" height="22" rx="11" fill="#D9E2EC"/>
+</svg>
