@@ -1,4 +1,6 @@
-import { ArrowRight, ArrowUpRight, Rocket, Brain, Code2, FolderOpen, Shield, Briefcase, Monitor, Users, Globe, Play, Map, Clock, HelpCircle, Linkedin, Twitter, Youtube, Instagram, Send, Sparkles, Star, Zap, CheckCircle2, BookOpen, Lightbulb, Target, GraduationCap, Award } from "lucide-react";
+
+import { ArrowRight, ArrowUpRight, Rocket, Brain, Code2, FolderOpen, Shield, Briefcase, Monitor, Users, Globe, Play, Map, Clock, HelpCircle, Linkedin, Twitter, Youtube, Instagram, Send, Sparkles, Star, Zap, CheckCircle2, BookOpen, Lightbulb, Target, GraduationCap, Award, Menu, X } from "lucide-react";
+import { useState } from "react";
 
 /* ════════════════════════════════════════════════════════
    SHARED PRIMITIVES
@@ -59,48 +61,69 @@ const Sparkle = ({ className = "" }: { className?: string }) => (
    NAVBAR
    ════════════════════════════════════════════════════════ */
 
-const Navbar = () => (
-  <nav className="sticky top-0 z-50 backdrop-blur-xl bg-white/70 border-b border-gray-100/80">
-    <div className="max-w-7xl mx-auto px-6 h-[68px] flex items-center justify-between gap-8">
-      {/* Logo */}
-      <a href="#" className="flex items-center gap-2.5 shrink-0 group">
-        <div className="relative w-10 h-10">
-          <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-violet-600 via-fuchsia-600 to-purple-700 shadow-lg shadow-violet-300/40 group-hover:shadow-violet-400/50 transition-shadow" />
-          <div className="absolute inset-0 rounded-2xl flex items-center justify-center">
-            <span className="text-white font-black text-lg italic">V</span>
+const Navbar = () => {
+  const [open, setOpen] = useState(false);
+  return (
+    <nav className="sticky top-0 z-50 backdrop-blur-xl bg-white/70 border-b border-gray-100/80">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 h-[64px] sm:h-[68px] flex items-center justify-between gap-4">
+        {/* Logo */}
+        <a href="#" className="flex items-center gap-2 sm:gap-2.5 shrink-0 group">
+          <div className="relative w-9 h-9 sm:w-10 sm:h-10">
+            <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-violet-600 via-fuchsia-600 to-purple-700 shadow-lg shadow-violet-300/40 group-hover:shadow-violet-400/50 transition-shadow" />
+            <div className="absolute inset-0 rounded-2xl flex items-center justify-center">
+              <span className="text-white font-black text-base sm:text-lg italic">V</span>
+            </div>
+            <div className="absolute -inset-1 rounded-2xl bg-gradient-to-br from-violet-400 to-fuchsia-400 opacity-0 group-hover:opacity-30 blur-md transition-opacity -z-10" />
           </div>
-          <div className="absolute -inset-1 rounded-2xl bg-gradient-to-br from-violet-400 to-fuchsia-400 opacity-0 group-hover:opacity-30 blur-md transition-opacity -z-10" />
-        </div>
-        <div className="leading-tight">
-          <div className="text-sm font-black tracking-tight text-gray-900">Velocity</div>
-          <div className="text-[10px] font-bold tracking-[0.2em] text-violet-500 uppercase -mt-0.5">Learning</div>
-        </div>
-      </a>
+          <div className="leading-tight">
+            <div className="text-sm font-black tracking-tight text-gray-900">Velocity</div>
+            <div className="text-[10px] font-bold tracking-[0.2em] text-violet-500 uppercase -mt-0.5">Learning</div>
+          </div>
+        </a>
 
-      {/* Nav links */}
-      <div className="hidden md:flex items-center gap-1 px-2 py-1.5 rounded-full bg-gray-50/80 border border-gray-100">
-        {["Courses", "Roadmap", "Mentorship", "About Us", "FAQs"].map((l) => (
-          <a key={l} href="#" className="px-4 py-1.5 text-sm font-medium text-gray-600 rounded-full hover:bg-white hover:text-violet-600 hover:shadow-sm transition-all">
-            {l}
-          </a>
-        ))}
+        {/* Nav links — desktop */}
+        <div className="hidden md:flex items-center gap-1 px-2 py-1.5 rounded-full bg-gray-50/80 border border-gray-100">
+          {["Courses", "Roadmap", "Mentorship", "About Us", "FAQs"].map((l) => (
+            <a key={l} href="#" className="px-3 lg:px-4 py-1.5 text-sm font-medium text-gray-600 rounded-full hover:bg-white hover:text-violet-600 hover:shadow-sm transition-all">
+              {l}
+            </a>
+          ))}
+        </div>
+
+        {/* Right */}
+        <div className="flex items-center gap-2">
+          <button className="group relative inline-flex items-center gap-1.5 sm:gap-2 pl-4 sm:pl-5 pr-3 sm:pr-4 py-2 sm:py-2.5 rounded-full bg-gray-900 hover:bg-gray-800 text-white text-xs sm:text-sm font-semibold transition-all">
+            <span className="hidden xs:inline">Join </span>Waitlist
+            <span className="w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-violet-500 group-hover:bg-violet-400 flex items-center justify-center transition-colors">
+              <ArrowUpRight className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
+            </span>
+          </button>
+          <button className="hidden sm:flex w-10 h-10 rounded-full border border-gray-200 hover:border-violet-300 hover:bg-violet-50 items-center justify-center text-gray-500 transition-all">
+            <Sparkles className="w-4 h-4" />
+          </button>
+          {/* Hamburger */}
+          <button
+            onClick={() => setOpen(!open)}
+            className="md:hidden w-9 h-9 rounded-full border border-gray-200 hover:border-violet-300 hover:bg-violet-50 flex items-center justify-center text-gray-500 transition-all"
+          >
+            {open ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
+          </button>
+        </div>
       </div>
 
-      {/* Right */}
-      <div className="flex items-center gap-3">
-        <button className="group relative inline-flex items-center gap-2 pl-5 pr-4 py-2.5 rounded-full bg-gray-900 hover:bg-gray-800 text-white text-sm font-semibold transition-all">
-          Join Waitlist
-          <span className="w-6 h-6 rounded-full bg-violet-500 group-hover:bg-violet-400 flex items-center justify-center transition-colors">
-            <ArrowUpRight className="w-3.5 h-3.5" />
-          </span>
-        </button>
-        <button className="hidden sm:flex w-10 h-10 rounded-full border border-gray-200 hover:border-violet-300 hover:bg-violet-50 items-center justify-center text-gray-500 transition-all">
-          <Sparkles className="w-4 h-4" />
-        </button>
-      </div>
-    </div>
-  </nav>
-);
+      {/* Mobile menu */}
+      {open && (
+        <div className="md:hidden border-t border-gray-100 bg-white/95 backdrop-blur-xl px-4 py-3 flex flex-col gap-1">
+          {["Courses", "Roadmap", "Mentorship", "About Us", "FAQs"].map((l) => (
+            <a key={l} href="#" onClick={() => setOpen(false)} className="px-4 py-3 text-sm font-medium text-gray-700 rounded-xl hover:bg-violet-50 hover:text-violet-600 transition-all">
+              {l}
+            </a>
+          ))}
+        </div>
+      )}
+    </nav>
+  );
+};
 
 /* ════════════════════════════════════════════════════════
    HERO
@@ -115,12 +138,12 @@ const Hero = () => (
     <Sparkle className="absolute top-1/2 right-[6%] w-4 h-4 text-violet-400 animate-[float_7s_ease-in-out_infinite]" />
     <Sparkle className="absolute bottom-32 left-[42%] w-5 h-5 text-fuchsia-400 animate-[float_6s_ease-in-out_infinite]" />
 
-    <div className="relative max-w-7xl mx-auto px-6 pt-20 pb-16 grid lg:grid-cols-[1.1fr_1fr] gap-12 items-center">
+    <div className="relative max-w-7xl mx-auto px-4 sm:px-6 pt-10 sm:pt-16 lg:pt-20 pb-10 sm:pb-14 lg:pb-16 grid lg:grid-cols-[1.1fr_1fr] gap-8 lg:gap-12 items-center">
       {/* LEFT */}
       <div>
         <Pill>A new era of coding education</Pill>
 
-        <h1 className="mt-7 font-extrabold text-[3.5rem] sm:text-6xl lg:text-[5.5rem] leading-[0.95] tracking-tight text-gray-900">
+        <h1 className="mt-5 sm:mt-7 font-extrabold text-[2.1rem] sm:text-5xl lg:text-[5.5rem] leading-[0.95] tracking-tight text-gray-900">
           The Future of{" "}
           <span className="relative inline-block">
             <GradientText from="from-violet-600" via="via-fuchsia-500" to="to-purple-600">Coding</GradientText>
@@ -180,88 +203,66 @@ const Hero = () => (
         </div>
       </div>
 
-      {/* RIGHT — 3D layered code editor */}
-      <div className="relative h-[560px] lg:h-[620px] flex items-center justify-center">
+      {/* RIGHT */}
+      <div className="relative h-[300px] sm:h-[440px] lg:h-[620px] flex items-center justify-center">
         {/* Glow base */}
         <div className="absolute inset-10 rounded-[40px] opacity-60 blur-3xl bg-gradient-to-br from-violet-300 via-fuchsia-200 to-amber-200" />
 
         {/* Animated rings */}
         <div className="absolute inset-0 flex items-center justify-center">
-          <div className="absolute w-[420px] h-[420px] rounded-full border border-violet-200/70 animate-[spin-slow_30s_linear_infinite]" />
-          <div className="absolute w-[320px] h-[320px] rounded-full border border-fuchsia-200/50 animate-[spin-slow_40s_linear_infinite_reverse]" />
+          <div className="absolute w-[220px] h-[220px] sm:w-[340px] sm:h-[340px] lg:w-[420px] lg:h-[420px] rounded-full border border-violet-200/70 animate-[spin-slow_30s_linear_infinite]" />
+          <div className="absolute w-[160px] h-[160px] sm:w-[260px] sm:h-[260px] lg:w-[320px] lg:h-[320px] rounded-full border border-fuchsia-200/50 animate-[spin-slow_40s_linear_infinite_reverse]" />
         </div>
 
-        {/* Main code editor card */}
-        <div className="relative z-10 w-[420px] max-w-full">
+        {/* Main hero image */}
+        <div className="relative z-10 w-[200px] sm:w-[320px] lg:w-[420px] max-w-full">
           <div className="absolute -inset-2 rounded-[28px] bg-gradient-to-br from-violet-500 via-fuchsia-500 to-purple-600 opacity-30 blur-xl" />
-          <div className="relative bg-gray-950 rounded-3xl overflow-hidden shadow-[0_30px_60px_-20px_rgba(124,58,237,0.5),0_15px_30px_-10px_rgba(0,0,0,0.3)] border border-gray-800/50">
-            {/* Window chrome */}
-            <div className="flex items-center gap-2 px-4 py-3 bg-gray-900/80 border-b border-gray-800">
-              <div className="flex gap-1.5">
-                <span className="w-3 h-3 rounded-full bg-red-500/80" />
-                <span className="w-3 h-3 rounded-full bg-amber-400/80" />
-                <span className="w-3 h-3 rounded-full bg-emerald-500/80" />
-              </div>
-              <div className="ml-3 px-3 py-1 rounded-md bg-gray-800/60 text-[10px] text-gray-400 font-mono">velocity-learning.tsx</div>
-              <div className="ml-auto flex items-center gap-1 px-2 py-1 rounded-md bg-emerald-500/10 border border-emerald-500/20 text-[9px] text-emerald-400 font-bold">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" /> LIVE
-              </div>
-            </div>
-            {/* Code body */}
-            <div className="p-5 space-y-1 text-[13px] font-mono leading-relaxed">
-              <div className="flex gap-3"><span className="text-gray-600 select-none w-4 text-right">1</span><span><span className="text-purple-400">import</span> <span className="text-blue-300">{"{"} buildCareer {"}"}</span> <span className="text-purple-400">from</span> <span className="text-emerald-400">'velocity'</span></span></div>
-              <div className="flex gap-3"><span className="text-gray-600 select-none w-4 text-right">2</span><span /></div>
-              <div className="flex gap-3"><span className="text-gray-600 select-none w-4 text-right">3</span><span><span className="text-purple-400">const</span> <span className="text-cyan-300">student</span> <span className="text-pink-400">=</span> <span className="text-purple-400">await</span> <span className="text-yellow-300">enroll</span><span className="text-gray-400">(</span><span className="text-emerald-400">'you'</span><span className="text-gray-400">)</span></span></div>
-              <div className="flex gap-3"><span className="text-gray-600 select-none w-4 text-right">4</span><span /></div>
-              <div className="flex gap-3"><span className="text-gray-600 select-none w-4 text-right">5</span><span><span className="text-cyan-300">student</span></span></div>
-              <div className="flex gap-3"><span className="text-gray-600 select-none w-4 text-right">6</span><span className="pl-4"><span className="text-pink-400">.</span><span className="text-yellow-300">learn</span><span className="text-gray-400">(</span><span className="text-emerald-400">'roadmap'</span><span className="text-gray-400">)</span></span></div>
-              <div className="flex gap-3"><span className="text-gray-600 select-none w-4 text-right">7</span><span className="pl-4"><span className="text-pink-400">.</span><span className="text-yellow-300">build</span><span className="text-gray-400">(</span><span className="text-emerald-400">'projects'</span><span className="text-gray-400">)</span></span></div>
-              <div className="flex gap-3"><span className="text-gray-600 select-none w-4 text-right">8</span><span className="pl-4"><span className="text-pink-400">.</span><span className="text-yellow-300">getHired</span><span className="text-gray-400">()</span> <span className="inline-block w-1.5 h-3.5 bg-violet-400 align-middle animate-pulse" /></span></div>
-              <div className="flex gap-3"><span className="text-gray-600 select-none w-4 text-right">9</span><span /></div>
-              <div className="flex gap-3"><span className="text-gray-600 select-none w-4 text-right">10</span><span className="text-gray-500">// 2,500+ learners on waitlist 🚀</span></div>
-            </div>
-          </div>
+          <img
+            src="/lappy.png"
+            alt="Velocity Learning"
+            className="relative w-full rounded-2xl lg:rounded-3xl shadow-[0_30px_60px_-20px_rgba(124,58,237,0.5),_0_15px_30px_-10px_rgba(0,0,0,0.3)] border border-white/10 object-cover"
+          />
         </div>
 
         {/* Floating cards — top right */}
-        <div className="absolute top-2 right-0 z-20 backdrop-blur-xl bg-white/80 border border-white/60 rounded-2xl shadow-[0_20px_40px_-12px_rgba(124,58,237,0.25)] p-3.5 flex items-center gap-3 animate-[float_5s_ease-in-out_infinite]">
-          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-violet-500 to-fuchsia-500 flex items-center justify-center shadow-lg shadow-violet-300/50">
-            <Brain className="w-5 h-5 text-white" />
+        <div className="absolute top-2 right-0 z-20 backdrop-blur-xl bg-white/80 border border-white/60 rounded-xl sm:rounded-2xl shadow-[0_20px_40px_-12px_rgba(124,58,237,0.25)] p-2.5 sm:p-3.5 flex items-center gap-2 sm:gap-3 animate-[float_5s_ease-in-out_infinite]">
+          <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-gradient-to-br from-violet-500 to-fuchsia-500 flex items-center justify-center shadow-lg shadow-violet-300/50 shrink-0">
+            <Brain className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
           </div>
           <div>
-            <div className="text-[9px] font-bold uppercase tracking-wider text-violet-500">AI-Powered</div>
-            <div className="text-sm font-bold text-gray-900">Smart Learning</div>
+            <div className="text-[8px] sm:text-[9px] font-bold uppercase tracking-wider text-violet-500">AI-Powered</div>
+            <div className="text-xs sm:text-sm font-bold text-gray-900">Smart Learning</div>
           </div>
         </div>
 
         {/* Floating — middle right */}
-        <div className="absolute top-1/2 -right-6 z-20 backdrop-blur-xl bg-white/80 border border-white/60 rounded-2xl shadow-[0_20px_40px_-12px_rgba(245,158,11,0.25)] p-4 animate-[float_6s_ease-in-out_infinite]">
+        <div className="hidden sm:block absolute top-1/2 -right-4 lg:-right-6 z-20 backdrop-blur-xl bg-white/80 border border-white/60 rounded-2xl shadow-[0_20px_40px_-12px_rgba(245,158,11,0.25)] p-3 sm:p-4 animate-[float_6s_ease-in-out_infinite]">
           <div className="flex items-center gap-2 mb-1">
-            <Target className="w-3.5 h-3.5 text-amber-500" />
+            <Target className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-amber-500" />
             <div className="text-[9px] font-bold uppercase tracking-wider text-amber-600">Real Projects</div>
           </div>
-          <div className="text-3xl font-black bg-gradient-to-br from-amber-500 to-orange-600 bg-clip-text text-transparent leading-none">20+</div>
+          <div className="text-2xl sm:text-3xl font-black bg-gradient-to-br from-amber-500 to-orange-600 bg-clip-text text-transparent leading-none">20+</div>
           <div className="text-[10px] text-gray-500 mt-1">Hands-on builds</div>
         </div>
 
         {/* Floating — bottom left */}
-        <div className="absolute bottom-24 -left-4 z-20 backdrop-blur-xl bg-white/80 border border-white/60 rounded-2xl shadow-[0_20px_40px_-12px_rgba(236,72,153,0.25)] p-4 animate-[float_5.5s_ease-in-out_infinite]">
-          <div className="flex items-center gap-2 mb-1">
-            <Award className="w-3.5 h-3.5 text-fuchsia-500" />
-            <div className="text-[9px] font-bold uppercase tracking-wider text-fuchsia-600">Career Focused</div>
+        <div className="absolute bottom-10 sm:bottom-24 -left-2 sm:-left-4 z-20 backdrop-blur-xl bg-white/80 border border-white/60 rounded-xl sm:rounded-2xl shadow-[0_20px_40px_-12px_rgba(236,72,153,0.25)] p-2.5 sm:p-4 animate-[float_5.5s_ease-in-out_infinite]">
+          <div className="flex items-center gap-1.5 sm:gap-2 mb-0.5 sm:mb-1">
+            <Award className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-fuchsia-500" />
+            <div className="text-[8px] sm:text-[9px] font-bold uppercase tracking-wider text-fuchsia-600">Career Focused</div>
           </div>
-          <div className="text-3xl font-black bg-gradient-to-br from-fuchsia-500 to-pink-600 bg-clip-text text-transparent leading-none">100%</div>
-          <div className="text-[10px] text-gray-500 mt-1">Job-Oriented</div>
+          <div className="text-2xl sm:text-3xl font-black bg-gradient-to-br from-fuchsia-500 to-pink-600 bg-clip-text text-transparent leading-none">100%</div>
+          <div className="text-[10px] text-gray-500 mt-0.5 sm:mt-1">Job-Oriented</div>
         </div>
 
         {/* Floating — bottom right */}
-        <div className="absolute bottom-4 right-2 z-20 backdrop-blur-xl bg-white/80 border border-white/60 rounded-2xl shadow-[0_20px_40px_-12px_rgba(99,102,241,0.25)] p-3.5 flex items-center gap-3 animate-[float_4.5s_ease-in-out_infinite]">
-          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-500 to-violet-500 flex items-center justify-center shadow-lg shadow-indigo-300/50">
-            <Users className="w-5 h-5 text-white" />
+        <div className="hidden sm:flex absolute bottom-4 right-2 z-20 backdrop-blur-xl bg-white/80 border border-white/60 rounded-2xl shadow-[0_20px_40px_-12px_rgba(99,102,241,0.25)] p-3 sm:p-3.5 items-center gap-2 sm:gap-3 animate-[float_4.5s_ease-in-out_infinite]">
+          <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-gradient-to-br from-indigo-500 to-violet-500 flex items-center justify-center shadow-lg shadow-indigo-300/50 shrink-0">
+            <Users className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
           </div>
           <div>
-            <div className="text-[9px] font-bold uppercase tracking-wider text-indigo-500">Mentorship</div>
-            <div className="text-sm font-bold text-gray-900">1:1 Guidance</div>
+            <div className="text-[8px] sm:text-[9px] font-bold uppercase tracking-wider text-indigo-500">Mentorship</div>
+            <div className="text-xs sm:text-sm font-bold text-gray-900">1:1 Guidance</div>
           </div>
         </div>
       </div>
@@ -282,10 +283,10 @@ const featuresData = [
 ];
 
 const FeaturesStrip = () => (
-  <section className="relative py-10 px-6">
+  <section className="relative py-6 sm:py-10 px-4 sm:px-6">
     <div className="max-w-7xl mx-auto">
-      <div className="relative rounded-3xl bg-white border border-gray-100 shadow-[0_20px_50px_-20px_rgba(124,58,237,0.15)] p-2">
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-1">
+      <div className="relative rounded-2xl sm:rounded-3xl bg-white border border-gray-100 shadow-[0_20px_50px_-20px_rgba(124,58,237,0.15)] p-2">
+        <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-1">
           {featuresData.map(({ icon: Icon, title, sub, color }, i) => (
             <div key={title} className={`group relative flex items-center gap-3 px-4 py-4 rounded-2xl hover:bg-gradient-to-br hover:from-gray-50 hover:to-violet-50/40 transition-all ${i !== featuresData.length - 1 ? "lg:border-r border-dashed border-gray-100" : ""}`}>
               <div className={`relative w-11 h-11 rounded-xl bg-gradient-to-br ${color} flex items-center justify-center shadow-md shrink-0 group-hover:scale-110 group-hover:rotate-3 transition-transform`}>
@@ -325,19 +326,19 @@ const colorMap: Record<string, { bg: string; text: string; ring: string; iconBg:
 };
 
 const ProblemSection = () => (
-  <section className="relative py-24 px-6 overflow-hidden">
+  <section className="relative py-16 sm:py-24 px-4 sm:px-6 overflow-hidden">
     <MeshBg />
     <div className="relative max-w-7xl mx-auto">
       <SectionEyebrow>The Problem</SectionEyebrow>
-      <h2 className="text-center font-extrabold text-4xl lg:text-6xl text-gray-900 leading-[1.05] tracking-tight">
+      <h2 className="text-center font-extrabold text-2xl sm:text-4xl lg:text-6xl text-gray-900 leading-[1.05] tracking-tight">
         Why Most Learners <GradientText from="from-rose-600" via="via-amber-500" to="to-violet-600">Struggle</GradientText>
       </h2>
-      <p className="mt-5 text-center text-gray-500 text-lg max-w-xl mx-auto">
+      <p className="mt-4 sm:mt-5 text-center text-gray-500 text-base sm:text-lg max-w-xl mx-auto">
         Endless tutorials. Zero direction. Sound familiar?
       </p>
 
       {/* Bento grid */}
-      <div className="mt-14 grid grid-cols-1 md:grid-cols-6 gap-4 auto-rows-[200px]">
+      <div className="mt-10 sm:mt-14 grid grid-cols-1 md:grid-cols-6 gap-4 auto-rows-auto md:auto-rows-[200px]">
         {problemCards.map((card, i) => {
           const c = colorMap[card.color];
           // First card spans 2 cols, others fit
@@ -374,9 +375,9 @@ const ProblemSection = () => (
    ════════════════════════════════════════════════════════ */
 
 const SolutionSection = () => (
-  <section className="px-6 py-12">
+  <section className="px-4 sm:px-6 py-8 sm:py-12">
     <div className="max-w-7xl mx-auto">
-      <div className="relative rounded-[2.5rem] overflow-hidden bg-gradient-to-br from-violet-50 via-fuchsia-50 to-amber-50 border border-violet-100 px-8 py-20 text-center">
+      <div className="relative rounded-2xl sm:rounded-[2.5rem] overflow-hidden bg-gradient-to-br from-violet-50 via-fuchsia-50 to-amber-50 border border-violet-100 px-5 py-12 sm:px-8 sm:py-20 text-center">
         {/* Animated mesh */}
         <div className="absolute inset-0 opacity-50">
           <div className="absolute -top-40 left-1/4 w-96 h-96 rounded-full bg-gradient-to-br from-violet-300 to-fuchsia-300 blur-3xl opacity-40 animate-[float_8s_ease-in-out_infinite]" />
@@ -392,10 +393,10 @@ const SolutionSection = () => (
 
         <div className="relative">
           <SectionEyebrow>The Solution</SectionEyebrow>
-          <h2 className="font-extrabold text-5xl lg:text-7xl tracking-tight leading-none">
+          <h2 className="font-extrabold text-3xl sm:text-5xl lg:text-7xl tracking-tight leading-none">
             <GradientText from="from-violet-600" via="via-fuchsia-600" to="to-purple-700">Velocity Learning</GradientText>
           </h2>
-          <p className="mt-7 text-gray-700 text-lg lg:text-xl max-w-2xl mx-auto leading-relaxed">
+          <p className="mt-5 sm:mt-7 text-gray-700 text-base sm:text-lg lg:text-xl max-w-2xl mx-auto leading-relaxed">
             <span className="font-bold text-gray-900">Structured. Guided. Practical. Career-Focused.</span>
             <br />
             Everything you need to go from beginner to job ready.
@@ -426,45 +427,164 @@ const SolutionSection = () => (
    ════════════════════════════════════════════════════════ */
 
 const coursesData = [
-  { label: "C", name: "C Programming", color: "from-blue-500 to-indigo-600", chip: "bg-blue-50 text-blue-700", level: "Foundation" },
-  { label: "C++", name: "C++", color: "from-indigo-500 to-purple-600", chip: "bg-indigo-50 text-indigo-700", level: "Intermediate" },
-  { label: "Jv", name: "Java", color: "from-orange-500 to-red-600", chip: "bg-orange-50 text-orange-700", level: "Industry" },
-  { label: "Py", name: "Python", color: "from-yellow-400 to-amber-500", chip: "bg-amber-50 text-amber-700", level: "Versatile" },
-  { label: "</>", name: "Web Development", color: "from-cyan-500 to-teal-600", chip: "bg-cyan-50 text-cyan-700", level: "Full-Stack" },
-  { label: "★", name: "Interview Prep", color: "from-violet-500 to-fuchsia-600", chip: "bg-violet-50 text-violet-700", level: "Job-Ready" },
+  {
+    name: "C Programming", level: "Foundation",
+    iconSrc: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/c/c-original.svg",
+    blob1: "#1d4ed8", blob2: "#4f46e5",
+    chipColor: "rgba(99,102,241,0.25)", chipText: "#a5b4fc",
+  },
+  {
+    name: "C++", level: "Intermediate",
+    iconSrc: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/cplusplus/cplusplus-original.svg",
+    blob1: "#6d28d9", blob2: "#9333ea",
+    chipColor: "rgba(139,92,246,0.25)", chipText: "#c4b5fd",
+  },
+  {
+    name: "Java", level: "Industry",
+    iconSrc: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg",
+    blob1: "#c2410c", blob2: "#db2777",
+    chipColor: "rgba(249,115,22,0.25)", chipText: "#fdba74",
+  },
+  {
+    name: "Python", level: "Versatile",
+    iconSrc: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg",
+    blob1: "#b45309", blob2: "#1d4ed8",
+    chipColor: "rgba(234,179,8,0.25)", chipText: "#fde68a",
+  },
+  {
+    name: "Web Dev", level: "Full-Stack",
+    iconSrc: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg",
+    blob1: "#0e7490", blob2: "#047857",
+    chipColor: "rgba(20,184,166,0.25)", chipText: "#5eead4",
+  },
+  {
+    name: "Interview Prep", level: "Job-Ready",
+    iconSrc: null as string | null,
+    blob1: "#5b21b6", blob2: "#be185d",
+    chipColor: "rgba(167,139,250,0.25)", chipText: "#c4b5fd",
+  },
 ];
 
 const CoursesSection = () => (
-  <section className="bg-white py-24 px-6">
-    <div className="max-w-7xl mx-auto">
+  <section className="relative py-16 sm:py-24 px-4 sm:px-6 overflow-hidden bg-[#08080f]">
+    {/* faint section-level ambient */}
+    <div className="absolute -top-60 left-1/4 w-[600px] h-[600px] rounded-full bg-violet-900/30 blur-[140px] pointer-events-none" />
+    <div className="absolute -bottom-60 right-1/4 w-[600px] h-[600px] rounded-full bg-fuchsia-900/30 blur-[140px] pointer-events-none" />
+
+    <div className="relative max-w-7xl mx-auto">
       <SectionEyebrow>Our Courses</SectionEyebrow>
-      <h2 className="text-center font-extrabold text-4xl lg:text-6xl text-gray-900 leading-[1.05] tracking-tight">
-        Courses <GradientText from="from-violet-600" via="via-fuchsia-600" to="to-amber-500">Launching Soon</GradientText>
+      <h2 className="text-center font-extrabold text-2xl sm:text-4xl lg:text-6xl text-white leading-[1.05] tracking-tight">
+        Courses <GradientText from="from-violet-400" via="via-fuchsia-400" to="to-amber-400">Launching Soon</GradientText>
       </h2>
-      <p className="mt-5 text-center text-gray-500 text-lg max-w-xl mx-auto">
+      <p className="mt-4 sm:mt-5 text-center text-slate-400 text-base sm:text-lg max-w-xl mx-auto">
         Hand-crafted curriculum. Industry-grade quality. Built for results.
       </p>
 
-      <div className="mt-14 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-        {coursesData.map(({ label, name, color, chip, level }) => (
-          <div key={name} className="group relative rounded-3xl bg-white border border-gray-100 p-5 hover:shadow-[0_20px_50px_-12px_rgba(124,58,237,0.25)] hover:-translate-y-2 hover:border-violet-200 transition-all overflow-hidden">
-            {/* gradient accent on hover */}
-            <div className={`absolute -inset-px rounded-3xl bg-gradient-to-br ${color} opacity-0 group-hover:opacity-[0.08] transition-opacity`} />
-            {/* corner glow */}
-            <div className={`absolute -top-12 -right-12 w-32 h-32 rounded-full bg-gradient-to-br ${color} opacity-0 group-hover:opacity-20 blur-2xl transition-opacity`} />
+      <div className="mt-10 sm:mt-14 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-5">
+        {coursesData.map(({ name, iconSrc, level, blob1, blob2, chipColor, chipText }) => (
+          <div
+            key={name}
+            className="group relative rounded-[28px] overflow-hidden cursor-pointer transition-all duration-500 hover:-translate-y-3"
+            style={{ minHeight: "252px", background: "#0c0c1a" }}
+          >
+            {/* ── BLOB 1 – primary color, fills upper-left ── */}
+            <div
+              className="absolute transition-all duration-700 group-hover:scale-110"
+              style={{
+                width: "190px", height: "160px",
+                top: "-30px", left: "-40px",
+                background: blob1,
+                borderRadius: "50%",
+                filter: "blur(32px)",
+                opacity: 0.9,
+              }}
+            />
+            {/* ── BLOB 2 – accent color, upper-right ── */}
+            <div
+              className="absolute transition-all duration-700 group-hover:scale-110"
+              style={{
+                width: "150px", height: "130px",
+                top: "10px", right: "-35px",
+                background: blob2,
+                borderRadius: "50%",
+                filter: "blur(28px)",
+                opacity: 0.8,
+              }}
+            />
+            {/* ── BLOB 3 – small mid-blend ── */}
+            <div
+              className="absolute"
+              style={{
+                width: "100px", height: "80px",
+                top: "50px", left: "30%",
+                background: blob1,
+                borderRadius: "50%",
+                filter: "blur(24px)",
+                opacity: 0.4,
+              }}
+            />
 
-            <div className="relative flex flex-col items-center text-center gap-3">
-              <div className={`relative w-16 h-16 rounded-2xl bg-gradient-to-br ${color} flex items-center justify-center shadow-lg shadow-violet-200/40 group-hover:scale-110 group-hover:rotate-3 transition-transform`}>
-                <span className="text-white font-black text-xl">{label}</span>
-                <div className={`absolute -inset-1 rounded-2xl bg-gradient-to-br ${color} opacity-0 group-hover:opacity-30 blur-md transition-opacity -z-10`} />
+            {/* ── FROSTED GLASS PANEL (sits on top of blobs) ── */}
+            <div
+              className="absolute inset-0"
+              style={{
+                background: "rgba(6, 6, 18, 0.48)",
+                backdropFilter: "blur(18px)",
+                WebkitBackdropFilter: "blur(18px)",
+              }}
+            />
+
+            {/* ── BORDER ── */}
+            <div
+              className="absolute inset-0 rounded-[28px] pointer-events-none"
+              style={{ border: "1px solid rgba(255,255,255,0.10)" }}
+            />
+
+            {/* top specular highlight */}
+            <div
+              className="absolute top-0 left-8 right-8 h-px pointer-events-none"
+              style={{ background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.35), transparent)" }}
+            />
+            {/* left edge micro-highlight */}
+            <div
+              className="absolute top-8 bottom-8 left-0 w-px pointer-events-none"
+              style={{ background: "linear-gradient(180deg, transparent, rgba(255,255,255,0.12), transparent)" }}
+            />
+
+            {/* ── CONTENT (above glass) ── */}
+            <div className="relative z-10 flex flex-col items-center text-center p-5 h-full" style={{ minHeight: "252px" }}>
+
+              {/* icon */}
+              <div
+                className="w-[60px] h-[60px] rounded-2xl flex items-center justify-center p-2 mt-1 mb-3 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300"
+                style={{
+                  background: "rgba(255,255,255,0.08)",
+                  border: "1px solid rgba(255,255,255,0.15)",
+                  boxShadow: "inset 0 1px 0 rgba(255,255,255,0.2), 0 4px 20px rgba(0,0,0,0.35)",
+                }}
+              >
+                {iconSrc ? (
+                  <img src={iconSrc} alt={name} className="w-9 h-9 object-contain" style={{ filter: "drop-shadow(0 2px 6px rgba(0,0,0,0.5))" }} />
+                ) : (
+                  <Brain className="w-9 h-9" style={{ color: "#c4b5fd" }} />
+                )}
               </div>
-              <div className="space-y-1">
-                <div className={`inline-block text-[9px] font-bold tracking-wider uppercase px-2 py-0.5 rounded-full ${chip}`}>{level}</div>
-                <div className="font-bold text-sm text-gray-900">{name}</div>
+
+              {/* level chip */}
+              <div
+                className="text-[9px] font-bold tracking-[0.18em] uppercase px-2.5 py-0.5 rounded-full mb-1.5"
+                style={{ background: chipColor, color: chipText, border: `1px solid ${chipText}40` }}
+              >
+                {level}
               </div>
-              <div className="w-full pt-3 border-t border-dashed border-gray-100">
-                <div className="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-violet-600">
-                  <span className="w-1.5 h-1.5 rounded-full bg-violet-500 animate-pulse" />
+
+              {/* name */}
+              <div className="font-bold text-sm leading-tight" style={{ color: "rgba(255,255,255,0.92)" }}>{name}</div>
+
+              {/* launching soon */}
+              <div className="mt-auto pt-4 w-full" style={{ borderTop: "1px solid rgba(255,255,255,0.08)" }}>
+                <div className="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider" style={{ color: "rgba(255,255,255,0.45)" }}>
+                  <span className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ background: chipText }} />
                   Launching Soon
                 </div>
               </div>
@@ -490,14 +610,14 @@ const journeySteps = [
 ];
 
 const JourneySection = () => (
-  <section className="relative py-24 px-6 overflow-hidden bg-gradient-to-b from-white via-violet-50/30 to-white">
+  <section className="relative py-16 sm:py-24 px-4 sm:px-6 overflow-hidden bg-gradient-to-b from-white via-violet-50/30 to-white">
     <MeshBg />
     <div className="relative max-w-7xl mx-auto">
       <SectionEyebrow>Your Journey</SectionEyebrow>
-      <h2 className="text-center font-extrabold text-4xl lg:text-6xl text-gray-900 leading-[1.05] tracking-tight">
+      <h2 className="text-center font-extrabold text-2xl sm:text-4xl lg:text-6xl text-gray-900 leading-[1.05] tracking-tight">
         From Beginner to <GradientText from="from-violet-600" via="via-fuchsia-600" to="to-amber-500">Job Ready</GradientText>
       </h2>
-      <p className="mt-5 text-center text-gray-500 text-lg max-w-xl mx-auto">
+      <p className="mt-4 sm:mt-5 text-center text-gray-500 text-base sm:text-lg max-w-xl mx-auto">
         Six precise stages. One clear destination.
       </p>
 
@@ -514,7 +634,7 @@ const JourneySection = () => (
           <path d="M 50 50 Q 250 0, 450 50 T 850 50 T 1150 50" stroke="url(#journey-grad)" strokeWidth="2" strokeDasharray="6 6" fill="none" />
         </svg>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-y-10 gap-x-4">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-y-8 sm:gap-y-10 gap-x-4">
           {journeySteps.map(({ icon: Icon, num, title, desc, color }, i) => (
             <div key={num} className="relative flex flex-col items-center text-center group">
               {/* Node */}
@@ -550,16 +670,16 @@ const teamMembers = [
 ];
 
 const TeamSection = () => (
-  <section className="bg-white py-24 px-6">
+  <section className="bg-white py-16 sm:py-24 px-4 sm:px-6">
     <div className="max-w-7xl mx-auto">
       <SectionEyebrow>Our Team</SectionEyebrow>
-      <h2 className="text-center font-extrabold text-4xl lg:text-6xl text-gray-900 leading-[1.05] tracking-tight">
+      <h2 className="text-center font-extrabold text-2xl sm:text-4xl lg:text-6xl text-gray-900 leading-[1.05] tracking-tight">
         Built by <GradientText from="from-violet-600" via="via-fuchsia-600" to="to-amber-500">Educators, Developers & Dreamers</GradientText>
       </h2>
 
-      <div className="mt-14 grid lg:grid-cols-[1.1fr_1fr] gap-5">
+      <div className="mt-10 sm:mt-14 grid lg:grid-cols-[1.1fr_1fr] gap-4 sm:gap-5">
         {/* Founder card */}
-        <div className="relative rounded-[2rem] overflow-hidden bg-gradient-to-br from-gray-950 via-violet-950 to-purple-950 p-8 lg:p-10 text-white shadow-[0_30px_60px_-20px_rgba(124,58,237,0.5)]">
+        <div className="relative rounded-2xl sm:rounded-[2rem] overflow-hidden bg-gradient-to-br from-gray-950 via-violet-950 to-purple-950 p-6 sm:p-8 lg:p-10 text-white shadow-[0_30px_60px_-20px_rgba(124,58,237,0.5)]">
           {/* Decorative blobs */}
           <div className="absolute top-0 right-0 w-72 h-72 bg-violet-600/30 rounded-full blur-3xl" />
           <div className="absolute bottom-0 left-0 w-64 h-64 bg-fuchsia-600/20 rounded-full blur-3xl" />
@@ -618,7 +738,7 @@ const TeamSection = () => (
         </div>
 
         {/* Other team members */}
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-2 gap-3 sm:gap-4">
           {teamMembers.map(({ initials, name, role, color, emoji }) => (
             <div key={name} className="group relative rounded-3xl bg-white border border-gray-100 p-6 hover:shadow-[0_20px_50px_-12px_rgba(124,58,237,0.25)] hover:-translate-y-1 transition-all overflow-hidden">
               {/* Corner glow */}
@@ -652,9 +772,9 @@ const TeamSection = () => (
    ════════════════════════════════════════════════════════ */
 
 const CtaSection = () => (
-  <section className="px-6 py-16">
+  <section className="px-4 sm:px-6 py-12 sm:py-16">
     <div className="max-w-7xl mx-auto">
-      <div className="relative rounded-[2.5rem] overflow-hidden bg-gradient-to-br from-violet-600 via-fuchsia-600 to-purple-700 p-10 lg:p-16 shadow-[0_40px_80px_-20px_rgba(124,58,237,0.5)]">
+      <div className="relative rounded-2xl sm:rounded-[2.5rem] overflow-hidden bg-gradient-to-br from-violet-600 via-fuchsia-600 to-purple-700 p-5 sm:p-10 lg:p-16 shadow-[0_40px_80px_-20px_rgba(124,58,237,0.5)]">
         {/* Mesh + grid bg */}
         <div className="absolute inset-0 opacity-20" style={{ backgroundImage: "radial-gradient(rgba(255,255,255,0.6) 1px, transparent 1px)", backgroundSize: "24px 24px" }} />
         <div className="absolute -top-32 -right-32 w-[500px] h-[500px] bg-amber-400/30 rounded-full blur-3xl" />
@@ -665,10 +785,10 @@ const CtaSection = () => (
         <Sparkle className="absolute top-1/2 right-[10%] w-7 h-7 text-white/60 animate-[float_6s_ease-in-out_infinite]" />
         <Sparkle className="absolute bottom-12 left-[40%] w-4 h-4 text-amber-200 animate-[float_4s_ease-in-out_infinite]" />
 
-        <div className="relative grid lg:grid-cols-[1.5fr_1fr] gap-10 items-center">
+        <div className="relative grid lg:grid-cols-[1.5fr_1fr] gap-8 lg:gap-10 items-center">
           <div>
             <Pill accent="white">✦ Limited spots — early access</Pill>
-            <h2 className="mt-6 text-4xl lg:text-6xl font-extrabold text-white leading-[1.05] tracking-tight">
+            <h2 className="mt-4 sm:mt-6 text-2xl sm:text-4xl lg:text-6xl font-extrabold text-white leading-[1.05] tracking-tight">
               Be Among the First Learners at{" "}
               <span className="relative inline-block">
                 <span className="bg-gradient-to-r from-amber-300 via-yellow-200 to-amber-400 bg-clip-text text-transparent">Velocity Learning</span>
@@ -716,16 +836,16 @@ const CtaSection = () => (
    ════════════════════════════════════════════════════════ */
 
 const Footer = () => (
-  <footer className="relative bg-gradient-to-b from-gray-950 to-black text-gray-400 pt-20 pb-8 px-6 overflow-hidden">
+  <footer className="relative bg-gradient-to-b from-gray-950 to-black text-gray-400 pt-14 sm:pt-20 pb-8 px-4 sm:px-6 overflow-hidden">
     {/* Subtle grid */}
     <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: "linear-gradient(#fff 1px,transparent 1px),linear-gradient(90deg,#fff 1px,transparent 1px)", backgroundSize: "48px 48px" }} />
     <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-violet-600/10 rounded-full blur-3xl" />
 
     <div className="relative max-w-7xl mx-auto">
       {/* Top */}
-      <div className="grid lg:grid-cols-12 gap-10 mb-16 pb-12 border-b border-gray-800/50">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-10 mb-16 pb-12 border-b border-gray-800/50">
         {/* Brand */}
-        <div className="lg:col-span-5">
+        <div className="sm:col-span-2 lg:col-span-5">
           <div className="flex items-center gap-3 mb-5">
             <div className="relative w-12 h-12">
               <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-violet-500 via-fuchsia-500 to-purple-600 shadow-lg" />
@@ -752,7 +872,7 @@ const Footer = () => (
         </div>
 
         {/* Links */}
-        <div className="lg:col-span-2">
+        <div className="lg:col-span-2 sm:col-span-1">
           <div className="text-xs font-black tracking-[0.2em] uppercase text-white mb-5">Quick Links</div>
           <ul className="space-y-3 text-sm">
             {["Courses", "Roadmap", "Mentorship", "About Us", "FAQs"].map((l) => (
@@ -763,7 +883,7 @@ const Footer = () => (
             ))}
           </ul>
         </div>
-        <div className="lg:col-span-2">
+        <div className="lg:col-span-2 sm:col-span-1">
           <div className="text-xs font-black tracking-[0.2em] uppercase text-white mb-5">Legal</div>
           <ul className="space-y-3 text-sm">
             {["Privacy Policy", "Terms of Service", "Refund Policy"].map((l) => (
@@ -776,7 +896,7 @@ const Footer = () => (
         </div>
 
         {/* Newsletter */}
-        <div className="lg:col-span-3">
+        <div className="sm:col-span-2 lg:col-span-3">
           <div className="text-xs font-black tracking-[0.2em] uppercase text-white mb-5">Stay Updated</div>
           <p className="text-sm text-gray-400 mb-4 leading-relaxed">Get launch updates straight to your inbox.</p>
           <div className="relative">
