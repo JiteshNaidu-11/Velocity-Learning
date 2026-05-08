@@ -326,11 +326,11 @@ const colorMap: Record<string, { bg: string; text: string; ring: string; iconBg:
 };
 
 const ProblemSection = () => (
-  <section className="relative py-16 sm:py-24 px-4 sm:px-6 overflow-hidden">
+  <section className="relative py-16 sm:py-24 px-4 sm:px-6 overflow-hidden bg-[#08080f]">
     <MeshBg />
     <div className="relative max-w-7xl mx-auto">
       <SectionEyebrow>The Problem</SectionEyebrow>
-      <h2 className="text-center font-extrabold text-2xl sm:text-4xl lg:text-6xl text-gray-900 leading-[1.05] tracking-tight">
+      <h2 className="text-center font-extrabold text-2xl sm:text-4xl lg:text-6xl text-white leading-[1.05] tracking-tight">
         Why Most Learners <GradientText from="from-rose-600" via="via-amber-500" to="to-violet-600">Struggle</GradientText>
       </h2>
       <p className="mt-4 sm:mt-5 text-center text-gray-500 text-base sm:text-lg max-w-xl mx-auto">
@@ -670,11 +670,11 @@ const teamMembers = [
 ];
 
 const TeamSection = () => (
-  <section className="bg-white py-16 sm:py-24 px-4 sm:px-6">
+  <section className="bg-[#08080f] py-16 sm:py-24 px-4 sm:px-6">
     <div className="max-w-7xl mx-auto">
       <SectionEyebrow>Our Team</SectionEyebrow>
-      <h2 className="text-center font-extrabold text-2xl sm:text-4xl lg:text-6xl text-gray-900 leading-[1.05] tracking-tight">
-        Built by <GradientText from="from-violet-600" via="via-fuchsia-600" to="to-amber-500">Educators, Developers & Dreamers</GradientText>
+      <h2 className="text-center font-extrabold text-2xl sm:text-4xl lg:text-6xl text-white leading-[1.05] tracking-tight">
+        <span className="text-white">Built by </span><GradientText from="from-violet-600" via="via-fuchsia-600" to="to-amber-500">Educators, Developers & Dreamers</GradientText>
       </h2>
 
       <div className="mt-10 sm:mt-14 grid lg:grid-cols-[1.1fr_1fr] gap-4 sm:gap-5">
@@ -772,7 +772,7 @@ const TeamSection = () => (
    ════════════════════════════════════════════════════════ */
 
 const CtaSection = () => (
-  <section className="px-4 sm:px-6 py-12 sm:py-16">
+  <section className="px-4 sm:px-6 py-12 sm:py-16 bg-gradient-to-b from-white via-violet-50/30 to-white">
     <div className="max-w-7xl mx-auto">
       <div className="relative rounded-2xl sm:rounded-[2.5rem] overflow-hidden bg-gradient-to-br from-violet-600 via-fuchsia-600 to-purple-700 p-5 sm:p-10 lg:p-16 shadow-[0_40px_80px_-20px_rgba(124,58,237,0.5)]">
         {/* Mesh + grid bg */}
