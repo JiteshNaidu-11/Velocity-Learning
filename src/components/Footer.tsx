@@ -29,7 +29,7 @@ const Footer = () => (
       <div>
         <h4 className="font-display font-semibold mb-4">Company</h4>
         <ul className="space-y-2 text-sm text-muted-foreground">
-          <li>About</li>
+          <li><Link to="/about" className="hover:text-foreground">About Us</Link></li>
           <li>Careers</li>
           <li>Privacy</li>
         </ul>

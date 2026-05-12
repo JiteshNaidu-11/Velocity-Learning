@@ -1,6 +1,7 @@
 
-import { ArrowRight, ArrowUpRight, Rocket, Brain, Code2, FolderOpen, Shield, Briefcase, Monitor, Users, Globe, Play, Map, Clock, HelpCircle, Linkedin, Twitter, Youtube, Instagram, Send, Sparkles, Star, Zap, CheckCircle2, BookOpen, Lightbulb, Target, GraduationCap, Award, Menu, X } from "lucide-react";
-import { useState } from "react";
+import { ArrowRight, ArrowUpRight, Rocket, Brain, Code2, FolderOpen, Shield, Briefcase, Monitor, Users, Globe, Play, Map, Clock, HelpCircle, Sparkles, Star, Target, GraduationCap, Award, Linkedin, Twitter } from "lucide-react";
+import HomeNavbar from "@/components/HomeNavbar";
+import HomeFooter from "@/components/HomeFooter";
 
 /* ════════════════════════════════════════════════════════
    SHARED PRIMITIVES
@@ -57,73 +58,6 @@ const Sparkle = ({ className = "" }: { className?: string }) => (
   </svg>
 );
 
-/* ════════════════════════════════════════════════════════
-   NAVBAR
-   ════════════════════════════════════════════════════════ */
-
-const Navbar = () => {
-  const [open, setOpen] = useState(false);
-  return (
-    <nav className="sticky top-0 z-50 backdrop-blur-xl bg-white/70 border-b border-gray-100/80">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 h-[64px] sm:h-[68px] flex items-center justify-between gap-4">
-        {/* Logo */}
-        <a href="#" className="flex items-center gap-2 sm:gap-2.5 shrink-0 group">
-          <div className="relative w-9 h-9 sm:w-10 sm:h-10">
-            <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-violet-600 via-fuchsia-600 to-purple-700 shadow-lg shadow-violet-300/40 group-hover:shadow-violet-400/50 transition-shadow" />
-            <div className="absolute inset-0 rounded-2xl flex items-center justify-center">
-              <span className="text-white font-black text-base sm:text-lg italic">V</span>
-            </div>
-            <div className="absolute -inset-1 rounded-2xl bg-gradient-to-br from-violet-400 to-fuchsia-400 opacity-0 group-hover:opacity-30 blur-md transition-opacity -z-10" />
-          </div>
-          <div className="leading-tight">
-            <div className="text-sm font-black tracking-tight text-gray-900">Velocity</div>
-            <div className="text-[10px] font-bold tracking-[0.2em] text-violet-500 uppercase -mt-0.5">Learning</div>
-          </div>
-        </a>
-
-        {/* Nav links — desktop */}
-        <div className="hidden md:flex items-center gap-1 px-2 py-1.5 rounded-full bg-gray-50/80 border border-gray-100">
-          {["Courses", "Roadmap", "Mentorship", "About Us", "FAQs"].map((l) => (
-            <a key={l} href="#" className="px-3 lg:px-4 py-1.5 text-sm font-medium text-gray-600 rounded-full hover:bg-white hover:text-violet-600 hover:shadow-sm transition-all">
-              {l}
-            </a>
-          ))}
-        </div>
-
-        {/* Right */}
-        <div className="flex items-center gap-2">
-          <button className="group relative inline-flex items-center gap-1.5 sm:gap-2 pl-4 sm:pl-5 pr-3 sm:pr-4 py-2 sm:py-2.5 rounded-full bg-gray-900 hover:bg-gray-800 text-white text-xs sm:text-sm font-semibold transition-all">
-            <span className="hidden xs:inline">Join </span>Waitlist
-            <span className="w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-violet-500 group-hover:bg-violet-400 flex items-center justify-center transition-colors">
-              <ArrowUpRight className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
-            </span>
-          </button>
-          <button className="hidden sm:flex w-10 h-10 rounded-full border border-gray-200 hover:border-violet-300 hover:bg-violet-50 items-center justify-center text-gray-500 transition-all">
-            <Sparkles className="w-4 h-4" />
-          </button>
-          {/* Hamburger */}
-          <button
-            onClick={() => setOpen(!open)}
-            className="md:hidden w-9 h-9 rounded-full border border-gray-200 hover:border-violet-300 hover:bg-violet-50 flex items-center justify-center text-gray-500 transition-all"
-          >
-            {open ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
-          </button>
-        </div>
-      </div>
-
-      {/* Mobile menu */}
-      {open && (
-        <div className="md:hidden border-t border-gray-100 bg-white/95 backdrop-blur-xl px-4 py-3 flex flex-col gap-1">
-          {["Courses", "Roadmap", "Mentorship", "About Us", "FAQs"].map((l) => (
-            <a key={l} href="#" onClick={() => setOpen(false)} className="px-4 py-3 text-sm font-medium text-gray-700 rounded-xl hover:bg-violet-50 hover:text-violet-600 transition-all">
-              {l}
-            </a>
-          ))}
-        </div>
-      )}
-    </nav>
-  );
-};
 
 /* ════════════════════════════════════════════════════════
    HERO
@@ -832,112 +766,13 @@ const CtaSection = () => (
 );
 
 /* ════════════════════════════════════════════════════════
-   FOOTER
-   ════════════════════════════════════════════════════════ */
-
-const Footer = () => (
-  <footer className="relative bg-gradient-to-b from-gray-950 to-black text-gray-400 pt-14 sm:pt-20 pb-8 px-4 sm:px-6 overflow-hidden">
-    {/* Subtle grid */}
-    <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: "linear-gradient(#fff 1px,transparent 1px),linear-gradient(90deg,#fff 1px,transparent 1px)", backgroundSize: "48px 48px" }} />
-    <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-violet-600/10 rounded-full blur-3xl" />
-
-    <div className="relative max-w-7xl mx-auto">
-      {/* Top */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-10 mb-16 pb-12 border-b border-gray-800/50">
-        {/* Brand */}
-        <div className="sm:col-span-2 lg:col-span-5">
-          <div className="flex items-center gap-3 mb-5">
-            <div className="relative w-12 h-12">
-              <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-violet-500 via-fuchsia-500 to-purple-600 shadow-lg" />
-              <div className="absolute inset-0 rounded-2xl flex items-center justify-center">
-                <span className="text-white font-black text-xl italic">V</span>
-              </div>
-            </div>
-            <div>
-              <div className="text-lg font-black text-white">Velocity</div>
-              <div className="text-[10px] font-bold tracking-[0.25em] text-violet-400 uppercase -mt-1">Learning</div>
-            </div>
-          </div>
-          <p className="text-gray-400 text-base leading-relaxed max-w-md mb-6">
-            The future of coding education. Structured, guided, practical, and built for careers.
-          </p>
-          {/* Socials */}
-          <div className="flex gap-2">
-            {[Twitter, Linkedin, Youtube, Instagram].map((Icon, i) => (
-              <button key={i} className="group w-10 h-10 rounded-xl bg-white/5 hover:bg-gradient-to-br hover:from-violet-600 hover:to-fuchsia-600 border border-white/10 hover:border-transparent flex items-center justify-center transition-all">
-                <Icon className="w-4 h-4 text-gray-400 group-hover:text-white" />
-              </button>
-            ))}
-          </div>
-        </div>
-
-        {/* Links */}
-        <div className="lg:col-span-2 sm:col-span-1">
-          <div className="text-xs font-black tracking-[0.2em] uppercase text-white mb-5">Quick Links</div>
-          <ul className="space-y-3 text-sm">
-            {["Courses", "Roadmap", "Mentorship", "About Us", "FAQs"].map((l) => (
-              <li key={l}><a href="#" className="text-gray-400 hover:text-violet-400 transition-colors inline-flex items-center gap-1.5 group">
-                <span className="w-0 group-hover:w-2 h-px bg-violet-400 transition-all" />
-                {l}
-              </a></li>
-            ))}
-          </ul>
-        </div>
-        <div className="lg:col-span-2 sm:col-span-1">
-          <div className="text-xs font-black tracking-[0.2em] uppercase text-white mb-5">Legal</div>
-          <ul className="space-y-3 text-sm">
-            {["Privacy Policy", "Terms of Service", "Refund Policy"].map((l) => (
-              <li key={l}><a href="#" className="text-gray-400 hover:text-violet-400 transition-colors inline-flex items-center gap-1.5 group">
-                <span className="w-0 group-hover:w-2 h-px bg-violet-400 transition-all" />
-                {l}
-              </a></li>
-            ))}
-          </ul>
-        </div>
-
-        {/* Newsletter */}
-        <div className="sm:col-span-2 lg:col-span-3">
-          <div className="text-xs font-black tracking-[0.2em] uppercase text-white mb-5">Stay Updated</div>
-          <p className="text-sm text-gray-400 mb-4 leading-relaxed">Get launch updates straight to your inbox.</p>
-          <div className="relative">
-            <input
-              type="email"
-              placeholder="you@example.com"
-              className="w-full pl-4 pr-14 py-3.5 text-sm rounded-2xl bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-violet-500 focus:bg-white/10 transition-all"
-            />
-            <button className="absolute right-1.5 top-1/2 -translate-y-1/2 w-10 h-10 rounded-xl bg-gradient-to-br from-violet-600 to-fuchsia-600 hover:from-violet-500 hover:to-fuchsia-500 flex items-center justify-center transition-all hover:scale-105">
-              <Send className="w-4 h-4 text-white" />
-            </button>
-          </div>
-          <div className="mt-4 inline-flex items-center gap-1.5 text-[11px] text-emerald-400">
-            <CheckCircle2 className="w-3 h-3" />
-            <span>No spam. Unsubscribe anytime.</span>
-          </div>
-        </div>
-      </div>
-
-      {/* Bottom */}
-      <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-        <div className="text-xs text-gray-500">
-          © 2025 <span className="text-white font-semibold">Velocity Learning</span>. All rights reserved.
-        </div>
-        <div className="flex items-center gap-2 text-xs text-gray-500">
-          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-          <span>All systems operational</span>
-        </div>
-      </div>
-    </div>
-  </footer>
-);
-
-/* ════════════════════════════════════════════════════════
    PAGE
    ════════════════════════════════════════════════════════ */
 
 export default function Index() {
   return (
     <div className="min-h-screen bg-white text-gray-900 antialiased selection:bg-violet-200 selection:text-violet-900">
-      <Navbar />
+      <HomeNavbar />
       <Hero />
       <FeaturesStrip />
       <ProblemSection />
@@ -946,7 +781,7 @@ export default function Index() {
       <JourneySection />
       <TeamSection />
       <CtaSection />
-      <Footer />
+      <HomeFooter />
     </div>
   );
 }
