@@ -1,12 +1,9 @@
 import { Link } from "react-router-dom";
 import HomeNavbar from "@/components/HomeNavbar";
 import HomeFooter from "@/components/HomeFooter";
-import {
-  BookOpen, Users, Globe, Briefcase, MapPin, Target,
-  Lightbulb, Rocket, Heart, CheckCircle2, ArrowRight, Sparkles,
-} from "lucide-react";
+import { ArrowRight, Sparkles } from "lucide-react";
 
-/* ── shared primitives (mirrors Index.tsx) ── */
+/* ── shared primitives ── */
 
 const MeshBg = () => (
   <div className="absolute inset-0 -z-10 overflow-hidden pointer-events-none">
@@ -40,29 +37,22 @@ const GradientTextLight = ({ children }: { children: React.ReactNode }) => (
   <span className="bg-gradient-to-r from-violet-400 via-fuchsia-400 to-amber-400 bg-clip-text text-transparent">{children}</span>
 );
 
-/* ── sections ── */
+/* ── data ── */
 
-const stats = [
-  { value: "500+", label: "Students Trained" },
-  { value: "50+", label: "Live Mentors" },
-  { value: "2", label: "Languages" },
-  { value: "95%", label: "Job Placement Rate" },
+const struggles = [
+  { num: "01", title: "Tutorial Overload", desc: "Too much random free content online with no structure or direction." },
+  { num: "02", title: "No Clear Roadmap", desc: "Most learners don't know what to learn or what order to follow." },
+  { num: "03", title: "Lack of Consistency", desc: "Starting strong but struggling to stay disciplined throughout." },
+  { num: "04", title: "No Proper Guidance", desc: "Getting stuck on problems with no mentor or support to help." },
+  { num: "05", title: "No Real Project Experience", desc: "Learning theory but struggling to build real-world projects." },
 ];
 
-const offerings = [
-  { icon: BookOpen, title: "Structured Roadmaps", description: "Clear, step-by-step learning paths for beginners — no guessing what to learn next." },
-  { icon: Users, title: "Live Mentorship", description: "1:1 sessions with industry professionals who review your code and help you grow faster." },
-  { icon: Briefcase, title: "Internship Opportunities", description: "Gain real-world experience through curated internship programs and project assignments." },
-  { icon: Rocket, title: "Job-Ready Training", description: "Interview prep, portfolio building, and industry insights to make you stand out." },
-  { icon: MapPin, title: "Community-Driven", description: "Join a thriving community of learners, collaborate on projects, and grow your network." },
-  { icon: CheckCircle2, title: "Accessible for All", description: "Whether you're a complete beginner or switching careers, our curriculum adapts to you." },
-];
-
-const values = [
-  { icon: Target, title: "Career-Focused", description: "Every course, project, and mentorship session is designed with one goal — helping you land your first tech job." },
-  { icon: Lightbulb, title: "Practical Learning", description: "Forget passive tutorials. You build real projects from day one, gaining experience employers look for." },
-  { icon: Globe, title: "Bilingual Platform", description: "Learn in Hindi or English — great education shouldn't have a language barrier." },
-  { icon: Heart, title: "Guided Support", description: "Mentors walk alongside you through doubts and code reviews so you never feel stuck." },
+const reasons = [
+  { num: "1", title: "Structured & Goal-Oriented Learning", desc: "Clear, focused, and organized learning paths designed to take you from zero to job-ready." },
+  { num: "2", title: "Practical, Project-Based Training", desc: "Hands-on experience through real-world projects that employers actually care about." },
+  { num: "3", title: "Expert Mentorship & Guidance", desc: "Continuous support, feedback, and guidance from industry professionals to accelerate your growth." },
+  { num: "4", title: "Consistent Growth System", desc: "A disciplined, consistent, and productive system built to keep you on track every day." },
+  { num: "5", title: "Career & Industry-Relevant Skills", desc: "Learn modern, relevant, and in-demand skills that align with what the industry needs right now." },
 ];
 
 /* ════════ SECTION 1 — Hero (LIGHT) ════════ */
@@ -76,135 +66,84 @@ const HeroSection = () => (
             <span className="absolute inline-flex h-full w-full rounded-full bg-current opacity-60 animate-ping" />
             <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-current" />
           </span>
-          Our Story
+          About Us
         </span>
       </div>
       <h1 className="font-extrabold text-4xl sm:text-6xl lg:text-7xl text-gray-900 leading-[1.05] tracking-tight mb-6 max-w-4xl mx-auto">
-        We're on a mission to make{" "}
-        <GradientText>coding accessible</GradientText>{" "}
-        for everyone.
+        Making coding <GradientText>simple, accessible,</GradientText> and career-oriented.
       </h1>
-      <p className="text-gray-500 text-lg sm:text-xl max-w-2xl mx-auto leading-relaxed mb-10">
-        Velocity Learning bridges the gap between learning and landing a job in tech — through structured roadmaps, live mentorship, and real-world projects.
+      <p className="text-gray-500 text-lg sm:text-xl max-w-2xl mx-auto leading-relaxed mb-4">
+        Velocity Learning is a modern coding education platform designed to help students learn through structured roadmaps, live mentorship, and practical project-based learning.
+      </p>
+      <p className="text-gray-400 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed mb-10">
+        With learning available in both <span className="text-gray-600 font-semibold">Hindi and English</span>, we bridge the gap between learning and industry readiness — so you can confidently build your future in tech.
       </p>
       <Link
         to="/outreach"
         className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-gray-900 hover:bg-gray-800 text-white font-semibold text-sm transition-all hover:-translate-y-0.5"
       >
-        Get Started <ArrowRight className="w-4 h-4" />
+        Start Learning <ArrowRight className="w-4 h-4" />
       </Link>
     </div>
   </section>
 );
 
-/* ════════ SECTION 2 — Stats (DARK) ════════ */
-const StatsSection = () => (
+/* ════════ SECTION 2 — Why Most Learners Struggle (DARK) ════════ */
+const StrugglesSection = () => (
   <section className="relative py-16 sm:py-24 px-4 sm:px-6 overflow-hidden bg-[#08080f]">
     <div className="absolute -top-60 left-1/4 w-[600px] h-[600px] rounded-full bg-violet-900/30 blur-[140px] pointer-events-none" />
     <div className="absolute -bottom-60 right-1/4 w-[600px] h-[600px] rounded-full bg-fuchsia-900/30 blur-[140px] pointer-events-none" />
     <div className="relative max-w-7xl mx-auto">
-      <SectionEyebrow dark>By The Numbers</SectionEyebrow>
-      <h2 className="text-center font-extrabold text-3xl sm:text-5xl text-white leading-tight tracking-tight mb-14">
-        Real impact, <GradientTextLight>real students</GradientTextLight>
+      <SectionEyebrow dark>The Problem</SectionEyebrow>
+      <h2 className="text-center font-extrabold text-3xl sm:text-5xl text-white leading-tight tracking-tight mb-4">
+        Why most learners <GradientTextLight>struggle?</GradientTextLight>
       </h2>
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-        {stats.map((s) => (
-          <div key={s.label} className="rounded-2xl sm:rounded-3xl border border-white/10 bg-white/5 backdrop-blur-sm p-6 sm:p-8 text-center hover:border-violet-500/30 transition-colors">
-            <div className="font-extrabold text-4xl sm:text-5xl bg-gradient-to-r from-violet-400 via-fuchsia-400 to-amber-400 bg-clip-text text-transparent mb-2">{s.value}</div>
-            <div className="text-gray-400 text-sm font-medium">{s.label}</div>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-);
-
-/* ════════ SECTION 3 — Who We Are (LIGHT) ════════ */
-const WhoWeAreSection = () => (
-  <section className="relative py-16 sm:py-24 px-4 sm:px-6 overflow-hidden bg-gradient-to-b from-white via-violet-50/30 to-white">
-    <MeshBg />
-    <div className="relative max-w-7xl mx-auto">
-      <SectionEyebrow>Who We Are</SectionEyebrow>
-      <h2 className="text-center font-extrabold text-3xl sm:text-5xl text-gray-900 leading-tight tracking-tight mb-14">
-        Turning beginners into{" "}
-        <GradientText>job-ready developers</GradientText>
-      </h2>
-      <div className="grid lg:grid-cols-2 gap-10 items-center">
-        <div className="space-y-5 text-gray-600 text-base sm:text-lg leading-relaxed">
-          <p>
-            Velocity Learning was born from a simple observation — most coding platforms teach you to code, but very few prepare you for a <strong className="text-gray-900">career</strong>. We set out to change that.
-          </p>
-          <p>
-            We combine structured roadmaps, live mentorship from working professionals, and real-world project experience to give you everything needed to confidently enter the tech industry.
-          </p>
-          <p>
-            With courses available in both <strong className="text-gray-900">Hindi and English</strong>, we break down the language barrier that has kept so many talented learners from reaching their potential.
-          </p>
-        </div>
-        <div className="grid grid-cols-2 gap-4">
-          {[
-            { title: "Our Vision", body: "A world where every aspiring developer, regardless of background or language, can build a meaningful career in technology." },
-            { title: "Our Mission", body: "Affordable, practical, and mentor-supported coding education that bridges the gap between learning and industry readiness." },
-            { title: "Our Approach", body: "Project-based learning, structured roadmaps, and continuous mentorship — not just pre-recorded videos." },
-            { title: "Our Promise", body: "You won't just learn to code. You'll graduate job-ready, portfolio-equipped, and interview-confident." },
-          ].map((item) => (
-            <div key={item.title} className="rounded-2xl bg-white border border-gray-100 shadow-[0_4px_20px_-4px_rgba(124,58,237,0.1)] p-5">
-              <div className="text-xs font-black tracking-[0.15em] uppercase text-violet-600 mb-2">{item.title}</div>
-              <p className="text-gray-500 text-sm leading-relaxed">{item.body}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
-  </section>
-);
-
-/* ════════ SECTION 4 — What We Offer (DARK) ════════ */
-const OfferingsSection = () => (
-  <section className="relative py-16 sm:py-24 px-4 sm:px-6 overflow-hidden bg-[#08080f]">
-    <div className="absolute -top-60 right-1/4 w-[600px] h-[600px] rounded-full bg-fuchsia-900/30 blur-[140px] pointer-events-none" />
-    <div className="absolute -bottom-60 left-1/4 w-[600px] h-[600px] rounded-full bg-violet-900/30 blur-[140px] pointer-events-none" />
-    <div className="relative max-w-7xl mx-auto">
-      <SectionEyebrow dark>What We Offer</SectionEyebrow>
-      <h2 className="text-center font-extrabold text-3xl sm:text-5xl text-white leading-tight tracking-tight mb-14">
-        Everything you need to{" "}
-        <GradientTextLight>succeed in tech</GradientTextLight>
-      </h2>
+      <p className="text-center text-gray-400 text-base sm:text-lg max-w-xl mx-auto mb-14">
+        Most people start learning to code but never finish. Here's why.
+      </p>
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-        {offerings.map((o) => (
-          <div key={o.title} className="rounded-2xl sm:rounded-3xl border border-white/10 bg-white/5 p-6 sm:p-7 hover:border-violet-500/30 hover:bg-white/8 transition-all group">
-            <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-violet-600/20 to-fuchsia-600/20 border border-violet-500/20 flex items-center justify-center mb-5 group-hover:from-violet-600/30 group-hover:to-fuchsia-600/30 transition-all">
-              <o.icon className="w-5 h-5 text-violet-400" />
-            </div>
-            <div className="font-bold text-white text-base mb-2">{o.title}</div>
-            <p className="text-gray-400 text-sm leading-relaxed">{o.description}</p>
+        {struggles.map((s) => (
+          <div key={s.num} className="rounded-2xl sm:rounded-3xl border border-white/10 bg-white/5 p-6 sm:p-7 hover:border-violet-500/30 hover:bg-white/[0.07] transition-all group">
+            <div className="font-black text-4xl sm:text-5xl bg-gradient-to-r from-violet-500/30 to-fuchsia-500/30 bg-clip-text text-transparent mb-4 leading-none">{s.num}</div>
+            <div className="font-bold text-white text-base sm:text-lg mb-2">{s.title}</div>
+            <p className="text-gray-400 text-sm leading-relaxed">{s.desc}</p>
           </div>
         ))}
+        {/* filler card to balance 5-item grid */}
+        <div className="hidden lg:flex rounded-2xl sm:rounded-3xl border border-white/5 bg-white/[0.02] p-7 items-center justify-center">
+          <p className="text-center text-gray-600 text-sm font-medium leading-relaxed">
+            Sound familiar?<br />
+            <span className="text-violet-400 font-bold">Velocity Learning</span> was built to solve every one of these.
+          </p>
+        </div>
       </div>
     </div>
   </section>
 );
 
-/* ════════ SECTION 5 — Values (LIGHT) ════════ */
-const ValuesSection = () => (
+/* ════════ SECTION 3 — Why Choose Us (LIGHT) ════════ */
+const WhyUsSection = () => (
   <section className="relative py-16 sm:py-24 px-4 sm:px-6 overflow-hidden bg-gradient-to-b from-white via-violet-50/30 to-white">
     <MeshBg />
     <div className="relative max-w-7xl mx-auto">
-      <SectionEyebrow>Our Values</SectionEyebrow>
-      <h2 className="text-center font-extrabold text-3xl sm:text-5xl text-gray-900 leading-tight tracking-tight mb-14">
-        Built on principles that{" "}
-        <GradientText>actually matter</GradientText>
+      <SectionEyebrow>Why Choose Us</SectionEyebrow>
+      <h2 className="text-center font-extrabold text-3xl sm:text-5xl text-gray-900 leading-tight tracking-tight mb-4">
+        The <GradientText>Velocity</GradientText> difference
       </h2>
-      <div className="grid sm:grid-cols-2 gap-5 sm:gap-6">
-        {values.map((v) => (
-          <div key={v.title} className="rounded-2xl sm:rounded-3xl bg-white border border-gray-100 shadow-[0_4px_20px_-4px_rgba(124,58,237,0.1)] p-6 sm:p-8 flex gap-5 items-start hover:shadow-[0_8px_30px_-8px_rgba(124,58,237,0.2)] transition-shadow">
-            <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-violet-50 to-fuchsia-50 border border-violet-100 flex items-center justify-center shrink-0">
-              <v.icon className="w-6 h-6 text-violet-600" />
+      <p className="text-center text-gray-500 text-base sm:text-lg max-w-xl mx-auto mb-14">
+        We don't just teach coding — we build careers.
+      </p>
+      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
+        {reasons.map((r, i) => (
+          <div
+            key={r.num}
+            className={`rounded-2xl sm:rounded-3xl bg-white border border-gray-100 shadow-[0_4px_20px_-4px_rgba(124,58,237,0.1)] p-6 sm:p-8 hover:shadow-[0_8px_30px_-8px_rgba(124,58,237,0.2)] transition-shadow ${i === 4 ? "sm:col-span-2 lg:col-span-1" : ""}`}
+          >
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-violet-50 to-fuchsia-50 border border-violet-100 flex items-center justify-center mb-5">
+              <span className="font-black text-sm text-violet-600">{r.num}</span>
             </div>
-            <div>
-              <div className="font-bold text-gray-900 text-lg mb-2">{v.title}</div>
-              <p className="text-gray-500 leading-relaxed text-sm sm:text-base">{v.description}</p>
-            </div>
+            <div className="font-bold text-gray-900 text-base sm:text-lg mb-2">{r.title}</div>
+            <p className="text-gray-500 text-sm leading-relaxed">{r.desc}</p>
           </div>
         ))}
       </div>
@@ -212,7 +151,7 @@ const ValuesSection = () => (
   </section>
 );
 
-/* ════════ SECTION 6 — CTA (LIGHT wrapper + DARK card) ════════ */
+/* ════════ SECTION 4 — CTA (LIGHT + DARK card) ════════ */
 const CtaSection = () => (
   <section className="px-4 sm:px-6 py-12 sm:py-16 bg-gradient-to-b from-white via-violet-50/30 to-white">
     <div className="max-w-7xl mx-auto">
@@ -221,15 +160,22 @@ const CtaSection = () => (
         <div className="absolute -top-20 -left-20 w-64 h-64 rounded-full bg-white/10 blur-3xl" />
         <div className="absolute -bottom-20 -right-20 w-64 h-64 rounded-full bg-amber-400/20 blur-3xl" />
         <div className="relative">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/20 bg-white/10 text-white/80 text-[11px] font-bold tracking-[0.18em] uppercase mb-6 backdrop-blur-md">
+            <span className="relative flex w-1.5 h-1.5">
+              <span className="absolute inline-flex h-full w-full rounded-full bg-white opacity-60 animate-ping" />
+              <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-white" />
+            </span>
+            Early Access
+          </div>
           <h2 className="font-extrabold text-3xl sm:text-5xl text-white leading-tight tracking-tight mb-4">
-            Ready to start your journey?
+            Start Your Learning Journey<br className="hidden sm:block" /> with Velocity Learning
           </h2>
           <p className="text-white/75 text-base sm:text-lg max-w-xl mx-auto mb-8">
-            Join hundreds of students already building their future in tech with Velocity Learning.
+            Join our early access community and get first access to industry-focused courses, expert mentorship, and exclusive launch opportunities.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link to="/outreach" className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full bg-white text-violet-700 font-bold text-sm hover:bg-white/90 transition-all hover:-translate-y-0.5 shadow-lg">
-              Get Started Free <ArrowRight className="w-4 h-4" />
+              Join Early Access <ArrowRight className="w-4 h-4" />
             </Link>
             <Link to="/contact" className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full border border-white/30 text-white font-semibold text-sm hover:bg-white/10 transition-all">
               Talk to Us
@@ -246,10 +192,8 @@ const AboutUs = () => (
   <div className="min-h-screen bg-white text-gray-900 antialiased selection:bg-violet-200 selection:text-violet-900">
     <HomeNavbar />
     <HeroSection />
-    <StatsSection />
-    <WhoWeAreSection />
-    <OfferingsSection />
-    <ValuesSection />
+    <StrugglesSection />
+    <WhyUsSection />
     <CtaSection />
     <HomeFooter />
   </div>
