@@ -1,5 +1,7 @@
 
 import { ArrowRight, ArrowUpRight, Rocket, Brain, Code2, FolderOpen, Shield, Briefcase, Monitor, Users, Globe, Play, Map, Clock, HelpCircle, Sparkles, Star, Target, GraduationCap, Award, Linkedin, Twitter } from "lucide-react";
+import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion";
+import { Link } from "react-router-dom";
 import HomeNavbar from "@/components/HomeNavbar";
 import HomeFooter from "@/components/HomeFooter";
 
@@ -64,7 +66,7 @@ const Sparkle = ({ className = "" }: { className?: string }) => (
    ════════════════════════════════════════════════════════ */
 
 const Hero = () => (
-  <section className="relative overflow-hidden bg-gradient-to-b from-white via-violet-50/30 to-white">
+  <section id="hero" className="relative overflow-hidden bg-gradient-to-b from-white via-violet-50/30 to-white">
     <MeshBg />
 
     {/* Decorative sparkles */}
@@ -104,13 +106,13 @@ const Hero = () => (
         </p>
 
         <div className="mt-9 flex flex-wrap items-center gap-4">
-          <button className="group relative inline-flex items-center gap-2 pl-6 pr-5 py-3.5 rounded-full bg-gradient-to-r from-violet-600 via-fuchsia-600 to-purple-600 text-white font-semibold text-sm shadow-xl shadow-violet-300/50 hover:shadow-2xl hover:shadow-violet-400/50 hover:-translate-y-0.5 transition-all">
+          <Link to="/outreach" className="group relative inline-flex items-center gap-2 pl-6 pr-5 py-3.5 rounded-full bg-gradient-to-r from-violet-600 via-fuchsia-600 to-purple-600 text-white font-semibold text-sm shadow-xl shadow-violet-300/50 hover:shadow-2xl hover:shadow-violet-400/50 hover:-translate-y-0.5 transition-all">
             <span className="absolute inset-0 rounded-full bg-gradient-to-r from-fuchsia-600 to-violet-600 opacity-0 group-hover:opacity-100 transition-opacity" />
             <span className="relative">Join Waitlist</span>
             <span className="relative w-7 h-7 rounded-full bg-white/20 flex items-center justify-center group-hover:bg-white/30 transition-colors">
               <ArrowUpRight className="w-4 h-4" />
             </span>
-          </button>
+          </Link>
           <button className="group inline-flex items-center gap-2 pl-6 pr-5 py-3.5 rounded-full bg-white border-2 border-gray-200 hover:border-violet-300 hover:bg-violet-50/50 text-gray-800 font-semibold text-sm transition-all">
             <Play className="w-4 h-4 text-violet-600 fill-violet-600" />
             <span>Learn More</span>
@@ -702,6 +704,95 @@ const TeamSection = () => (
 );
 
 /* ════════════════════════════════════════════════════════
+   FAQ
+   ════════════════════════════════════════════════════════ */
+
+const faqData = [
+  { q: "What is Velocity Learning?", a: "Velocity Learning is a modern learning platform focused on practical skills, mentorship, and industry-relevant education." },
+  { q: "Who can join Velocity Learning?", a: "Anyone passionate about learning and building career-ready skills can join, whether you're a beginner, student, or working professional." },
+  { q: "Are the courses beginner-friendly?", a: "Yes, our courses are designed to support learners from beginner to advanced levels with structured guidance." },
+  { q: "Will I get mentorship support?", a: "Yes, learners receive mentorship and guidance to help them stay on track and solve problems effectively." },
+  { q: "Do I need prior experience to enroll?", a: "No prior experience is required for the program. We start from the fundamentals and build up." },
+  { q: "Will certificates be provided?", a: "Yes, eligible learners may receive certificates upon successful course completion." },
+  { q: "Will there be live classes?", a: "Selected programs may include live interactive sessions, workshops, and mentor discussions." },
+  { q: "Are the skills taught job industry-relevant?", a: "Yes, we focus on modern tools, technologies, and practical skills aligned with industry needs." },
+  { q: "How long are the courses?", a: "Course duration may vary depending on the topic, learning level, and program structure." },
+  { q: "Will there be assignments and assessments?", a: "Yes, selected courses may include assignments, quizzes, and practical assessments to track progress." },
+  { q: "How can I stay updated about new courses?", a: "Join the waitlist and follow our official channels for the latest updates and announcements." },
+  { q: "How can I contact the Velocity Learning team?", a: "You can connect with us through the website or our official social media channels." },
+];
+
+const FAQSection = () => (
+  <section id="faqs" className="relative py-16 sm:py-24 px-4 sm:px-6 overflow-hidden bg-[#08080f]">
+    <MeshBg />
+    {/* Ambient blobs */}
+    <div className="absolute -top-40 left-1/4 w-[500px] h-[500px] rounded-full bg-violet-900/20 blur-[120px] pointer-events-none" />
+    <div className="absolute -bottom-40 right-1/4 w-[500px] h-[500px] rounded-full bg-fuchsia-900/20 blur-[120px] pointer-events-none" />
+
+    <div className="relative max-w-4xl mx-auto">
+      <SectionEyebrow>FAQs</SectionEyebrow>
+      <h2 className="text-center font-extrabold text-2xl sm:text-4xl lg:text-6xl text-white leading-[1.05] tracking-tight">
+        Frequently Asked{" "}
+        <GradientText from="from-violet-400" via="via-fuchsia-400" to="to-amber-400">Questions</GradientText>
+      </h2>
+      <p className="mt-4 sm:mt-5 text-center text-slate-400 text-base sm:text-lg max-w-xl mx-auto">
+        Everything you need to know about Velocity Learning.
+      </p>
+
+      <div className="mt-10 sm:mt-14 space-y-3">
+        <Accordion type="single" collapsible className="space-y-3">
+          {faqData.map(({ q, a }, i) => (
+            <AccordionItem
+              key={i}
+              value={`item-${i}`}
+              className="border-none"
+            >
+              <div className="group relative rounded-2xl bg-white/[0.03] border border-white/[0.08] hover:border-violet-500/25 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_20px_40px_-12px_rgba(124,58,237,0.15)] overflow-hidden">
+                {/* Left gradient accent bar */}
+                <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-violet-500 via-fuchsia-500 to-amber-500 opacity-0 group-data-[state=open]:opacity-100 transition-opacity" />
+                
+                <AccordionTrigger className="flex items-center gap-4 px-5 sm:px-6 py-5 text-left hover:no-underline [&[data-state=open]>div>svg]:rotate-180">
+                  {/* Number badge */}
+                  <div className="relative shrink-0 w-9 h-9 rounded-xl bg-gradient-to-br from-violet-500/20 to-fuchsia-500/20 border border-white/10 flex items-center justify-center">
+                    <span className="text-xs font-black text-violet-300">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                  </div>
+                  {/* Question */}
+                  <span className="flex-1 text-sm sm:text-base font-bold text-white/90 group-hover:text-white transition-colors pr-2">
+                    {q}
+                  </span>
+                  {/* Custom chevron */}
+                  <div className="shrink-0 w-7 h-7 rounded-full bg-white/5 border border-white/10 flex items-center justify-center transition-transform duration-300">
+                    <svg
+                      className="w-3.5 h-3.5 text-violet-400 transition-transform duration-300"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      strokeWidth={3}
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </div>
+                </AccordionTrigger>
+
+                <AccordionContent className="px-5 sm:px-6 pb-5 pt-0">
+                  <div className="pl-[52px]">
+                    <p className="text-sm sm:text-[15px] text-slate-400 leading-relaxed">
+                      {a}
+                    </p>
+                  </div>
+                </AccordionContent>
+              </div>
+            </AccordionItem>
+          ))}
+        </Accordion>
+      </div>
+    </div>
+  </section>
+);
+
+/* ════════════════════════════════════════════════════════
    CTA
    ════════════════════════════════════════════════════════ */
 
@@ -737,12 +828,12 @@ const CtaSection = () => (
           </div>
 
           <div className="flex flex-col gap-5">
-            <button className="group relative inline-flex items-center justify-center gap-3 px-8 py-5 rounded-2xl bg-white hover:bg-gray-50 text-violet-700 font-black text-base shadow-2xl transition-all hover:-translate-y-1">
+            <Link to="/outreach" className="group relative inline-flex items-center justify-center gap-3 px-8 py-5 rounded-2xl bg-white hover:bg-gray-50 text-violet-700 font-black text-base shadow-2xl transition-all hover:-translate-y-1">
               <span>Join Waitlist Now</span>
               <span className="w-9 h-9 rounded-full bg-gradient-to-br from-violet-600 to-fuchsia-600 flex items-center justify-center group-hover:scale-110 transition-transform">
                 <ArrowUpRight className="w-5 h-5 text-white" />
               </span>
-            </button>
+            </Link>
 
             <div className="flex items-center gap-3 px-5 py-4 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20">
               <div className="flex -space-x-2 shrink-0">
@@ -780,6 +871,7 @@ export default function Index() {
       <CoursesSection />
       <JourneySection />
       <TeamSection />
+      <FAQSection />
       <CtaSection />
       <HomeFooter />
     </div>

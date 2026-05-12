@@ -1,130 +1,186 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight, CheckCircle2, Mail, Search, Send } from "lucide-react";
-import Layout from "@/components/Layout";
-import { Button } from "@/components/ui/button";
-import { Blob } from "@/components/Decor";
+import HomeNavbar from "@/components/HomeNavbar";
+import HomeFooter from "@/components/HomeFooter";
+import { ArrowUpRight, Send, Twitter, Linkedin, Youtube, Instagram, CheckCircle2, Sparkles, Rocket, Users, Bell } from "lucide-react";
 
-const Outreach = () => (
-  <Layout>
-    <section className="relative gradient-hero overflow-hidden">
-      <div className="container py-20 text-center relative">
-        <Blob className="absolute top-10 left-1/4 w-72 h-72" color="primary" />
-        <Blob className="absolute bottom-0 right-1/4 w-72 h-72" color="info" />
-        <div className="relative">
-          <div className="inline-flex px-4 py-1.5 rounded-full bg-card border border-border text-xs font-semibold mb-6">
-            ✨ Outreach Dojo
-          </div>
-          <h1 className="font-display font-extrabold text-5xl lg:text-7xl tracking-tight max-w-4xl mx-auto">
-            Email hiring managers <span className="text-gradient">directly.</span>
-          </h1>
-          <p className="mt-6 text-lg text-muted-foreground max-w-2xl mx-auto">
-            We find verified emails. AI writes the personal note. You hit send. That's it.
-          </p>
-          <div className="mt-8 flex flex-wrap justify-center gap-3">
-            <Button variant="hero" size="lg">Start Outreach <ArrowRight /></Button>
-            <Button variant="outline" size="lg">See how it works</Button>
-          </div>
-          <div className="mt-12 flex flex-wrap justify-center gap-10 text-center">
-            {[{n:"138+",l:"Students placed"},{n:"95%",l:"Satisfaction"},{n:"3 days",l:"Avg reply time"}].map(s=>(
-              <div key={s.l}>
-                <div className="font-display font-extrabold text-3xl text-gradient">{s.n}</div>
-                <div className="text-xs text-muted-foreground mt-1">{s.l}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-    </section>
+/* ── shared primitives ── */
 
-    <section className="container py-24">
-      <h2 className="font-display font-extrabold text-4xl text-center mb-12">How it works</h2>
-      <div className="grid md:grid-cols-3 gap-6">
-        {[
-          {icon:Search, title:"We research", desc:"AI scans LinkedIn & company sites for the right hiring manager.", c:"info"},
-          {icon:Mail, title:"AI drafts", desc:"Personalized email referencing their work, your fit, your story.", c:"primary"},
-          {icon:Send, title:"You send", desc:"From your Gmail. We track opens & replies in your dashboard.", c:"success"},
-        ].map((s,i)=>(
-          <div key={i} className="bg-card rounded-3xl p-8 shadow-card border border-border/50">
-            <div className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-5 ${s.c==="info"?"bg-info-soft text-info":s.c==="success"?"bg-success-soft text-success":"bg-accent text-accent-foreground"}`}>
-              <s.icon className="w-7 h-7"/>
-            </div>
-            <h3 className="font-display font-bold text-xl mb-2">{s.title}</h3>
-            <p className="text-muted-foreground text-sm">{s.desc}</p>
-          </div>
-        ))}
-      </div>
-    </section>
-
-    <section className="container pb-24">
-      <div className="grid lg:grid-cols-2 gap-12 items-center">
-        <div>
-          <div className="text-sm font-semibold text-primary mb-3">EMAIL EXAMPLE</div>
-          <h2 className="font-display font-extrabold text-4xl mb-4">Sounds like you. Not a bot.</h2>
-          <p className="text-muted-foreground text-lg mb-6">
-            Every email is grounded in your background, the company's recent news, and the person's actual work.
-          </p>
-          <ul className="space-y-3">
-            {["References specific projects","Highlights mutual interests","Short, scannable, human","Always edit before sending"].map(t=>(
-              <li key={t} className="flex gap-2 items-start"><CheckCircle2 className="w-5 h-5 text-success mt-0.5"/> {t}</li>
-            ))}
-          </ul>
-        </div>
-        <div className="bg-card rounded-3xl shadow-elev p-6 border border-border">
-          <div className="flex items-center gap-2 pb-3 border-b border-border mb-4">
-            <div className="w-2.5 h-2.5 rounded-full bg-danger"/>
-            <div className="w-2.5 h-2.5 rounded-full bg-warning"/>
-            <div className="w-2.5 h-2.5 rounded-full bg-success"/>
-            <span className="ml-2 text-xs text-muted-foreground">Compose · Gmail</span>
-          </div>
-          <div className="text-sm space-y-2">
-            <div className="flex gap-2"><span className="text-muted-foreground w-16">To:</span> arjun.k@razorpay.com</div>
-            <div className="flex gap-2"><span className="text-muted-foreground w-16">Subject:</span> Your fintech blog + my UPI side project</div>
-            <div className="pt-4 leading-relaxed text-foreground/85">
-              Hi Arjun,<br/><br/>
-              I read your post on UPI 2.0 last week — the bit on tokenization tradeoffs hit hard. I built a small UPI-mocking sandbox for my college fintech club and ran into the exact issue you flagged.<br/><br/>
-              I'm a 3rd year CS student at BITS Pilani applying for SDE intern roles this summer. Would love 15 mins to ask how you'd approach scaling that.<br/><br/>
-              Aarav
-            </div>
-          </div>
-          <div className="mt-5 flex gap-2">
-            <Button variant="hero" size="sm">Send</Button>
-            <Button variant="soft" size="sm">Edit</Button>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section className="container pb-24">
-      <h2 className="font-display font-extrabold text-4xl text-center mb-3">Pricing built for students</h2>
-      <p className="text-center text-muted-foreground mb-12">Cancel anytime. No credit card to start.</p>
-      <div className="grid md:grid-cols-3 gap-5 max-w-5xl mx-auto">
-        {[
-          {name:"Starter", price:"₹0", desc:"Try it out", feat:["10 outreach emails","Basic templates","Reply tracking"], cta:"Start free"},
-          {name:"Growth", price:"₹999", desc:"Most popular", feat:["100 emails / month","AI personalization","Verified hiring managers","Priority support"], cta:"Get Growth", featured:true},
-          {name:"Scale", price:"₹2,499", desc:"Serious job hunt", feat:["Unlimited emails","Multi-account","1:1 mentor session","Advanced analytics"], cta:"Go Scale"},
-        ].map(p=>(
-          <div key={p.name} className={`rounded-3xl p-8 ${p.featured?"gradient-primary text-primary-foreground shadow-glow scale-105":"bg-card border border-border shadow-card"}`}>
-            {p.featured && <div className="text-xs font-bold mb-2 opacity-90">⭐ MOST POPULAR</div>}
-            <div className="font-display font-bold text-lg">{p.name}</div>
-            <div className={`text-sm mt-1 ${p.featured?"opacity-80":"text-muted-foreground"}`}>{p.desc}</div>
-            <div className="font-display font-extrabold text-5xl mt-5">{p.price}<span className="text-base font-medium opacity-70">/mo</span></div>
-            <ul className="my-7 space-y-3 text-sm">
-              {p.feat.map(f=><li key={f} className="flex gap-2 items-center"><CheckCircle2 className="w-4 h-4"/>{f}</li>)}
-            </ul>
-            <Button variant={p.featured?"dark":"hero"} className="w-full">{p.cta}</Button>
-          </div>
-        ))}
-      </div>
-    </section>
-
-    <section className="container pb-24">
-      <div className="gradient-primary rounded-3xl p-12 text-center text-primary-foreground shadow-glow">
-        <h2 className="font-display font-extrabold text-4xl lg:text-5xl mb-4">Ready to send your first email?</h2>
-        <p className="opacity-90 mb-6">Takes 2 minutes. First one's free.</p>
-        <Button asChild variant="dark" size="lg"><Link to="/dashboard">Start now</Link></Button>
-      </div>
-    </section>
-  </Layout>
+const MeshBg = () => (
+  <div className="absolute inset-0 -z-10 overflow-hidden pointer-events-none">
+    <div className="absolute -top-40 -left-40 w-[700px] h-[700px] rounded-full opacity-50 blur-3xl"
+      style={{ background: "radial-gradient(circle, rgba(196,181,253,0.35) 0%, rgba(255,255,255,0) 70%)" }} />
+    <div className="absolute top-20 -right-32 w-[600px] h-[600px] rounded-full opacity-40 blur-3xl"
+      style={{ background: "radial-gradient(circle, rgba(251,191,36,0.30) 0%, rgba(255,255,255,0) 70%)" }} />
+    <div className="absolute bottom-0 left-1/3 w-[500px] h-[500px] rounded-full opacity-35 blur-3xl"
+      style={{ background: "radial-gradient(circle, rgba(236,72,153,0.30) 0%, rgba(255,255,255,0) 70%)" }} />
+    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[600px] rounded-full opacity-20 blur-3xl"
+      style={{ background: "radial-gradient(ellipse at center, rgba(245,158,11,0.4) 0%, rgba(255,255,255,0) 70%)" }} />
+    <div className="absolute inset-0 opacity-[0.03]"
+      style={{ backgroundImage: "linear-gradient(#fff 1px,transparent 1px),linear-gradient(90deg,#fff 1px,transparent 1px)", backgroundSize: "56px 56px", maskImage: "radial-gradient(ellipse at center, black 30%, transparent 75%)" }} />
+  </div>
 );
+
+const Sparkle = ({ className = "" }: { className?: string }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="currentColor">
+    <path d="M12 0L13.5 9L22.5 10.5L13.5 12L12 21L10.5 12L1.5 10.5L10.5 9L12 0Z" />
+  </svg>
+);
+
+const GradientText = ({ children, from = "from-violet-400", via = "via-fuchsia-400", to = "to-amber-400" }: { children: React.ReactNode; from?: string; via?: string; to?: string }) => (
+  <span className={`bg-gradient-to-r ${from} ${via} ${to} bg-clip-text text-transparent`}>{children}</span>
+);
+
+/* ── data ── */
+
+const socialLinks = [
+  { icon: Twitter, label: "Twitter", href: "#" },
+  { icon: Linkedin, label: "LinkedIn", href: "#" },
+  { icon: Instagram, label: "Instagram", href: "#" },
+  { icon: Youtube, label: "YouTube", href: "#" },
+];
+
+const benefits = [
+  { icon: Rocket, text: "Early access to courses" },
+  { icon: Users, text: "Exclusive community invites" },
+  { icon: Bell, text: "Launch updates & announcements" },
+];
+
+/* ════════ PAGE ════════ */
+
+const Outreach = () => {
+  const [email, setEmail] = useState("");
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (email.trim()) {
+      setSubmitted(true);
+      setTimeout(() => {
+        setSubmitted(false);
+        setEmail("");
+      }, 4000);
+    }
+  };
+
+  return (
+    <div className="min-h-screen bg-[#08080f] text-white antialiased selection:bg-violet-500/30 selection:text-white">
+      <HomeNavbar />
+
+      {/* HERO */}
+      <section className="relative min-h-[calc(100vh-64px)] flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 py-16 sm:py-24 lg:py-32 overflow-hidden">
+        <MeshBg />
+
+        {/* Sparkles */}
+        <Sparkle className="absolute top-20 left-[10%] w-5 h-5 text-amber-400 animate-[float_5s_ease-in-out_infinite]" />
+        <Sparkle className="absolute top-32 right-[12%] w-4 h-4 text-violet-400 animate-[float_7s_ease-in-out_infinite]" />
+        <Sparkle className="absolute bottom-32 left-[18%] w-6 h-6 text-fuchsia-400 animate-[float_6s_ease-in-out_infinite]" />
+        <Sparkle className="absolute bottom-20 right-[20%] w-4 h-4 text-amber-300 animate-[float_4.5s_ease-in-out_infinite]" />
+
+        <div className="relative w-full max-w-2xl lg:max-w-3xl mx-auto flex flex-col items-center text-center">
+          {/* Pill */}
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/10 bg-white/5 backdrop-blur-md shadow-sm mb-6 sm:mb-8">
+            <Sparkles className="w-3 h-3 text-violet-400" />
+            <span className="text-[10px] font-black tracking-[0.22em] uppercase bg-gradient-to-r from-violet-400 to-fuchsia-400 bg-clip-text text-transparent">
+              Waitlist
+            </span>
+          </div>
+
+          {/* Heading */}
+          <h1 className="font-extrabold text-6xl sm:text-8xl lg:text-9xl text-white leading-[0.9] tracking-tight mb-4 sm:mb-6">
+            Coming <GradientText>soon!</GradientText>
+          </h1>
+
+          <p className="text-gray-400 text-base sm:text-lg lg:text-xl max-w-lg lg:max-w-xl mx-auto leading-relaxed mb-10 sm:mb-14">
+            We&apos;re building something special. Be the first to know when we launch.
+          </p>
+
+          {/* Glass Card */}
+          <div className="relative w-full max-w-xl sm:max-w-2xl mx-auto">
+            {/* Card glow */}
+            <div className="absolute -inset-1 rounded-[2rem] bg-gradient-to-br from-violet-500/20 via-fuchsia-500/20 to-amber-500/20 blur-xl opacity-60" />
+
+            <div className="relative rounded-[1.75rem] sm:rounded-[2rem] bg-white/[0.03] border border-white/[0.08] backdrop-blur-xl p-8 sm:p-12 lg:p-14 shadow-[0_20px_60px_-15px_rgba(124,58,237,0.25)] overflow-hidden">
+              {/* Inner ambient blobs */}
+              <div className="absolute -top-20 -right-20 w-60 h-60 rounded-full bg-violet-600/10 blur-3xl pointer-events-none" />
+              <div className="absolute -bottom-20 -left-20 w-60 h-60 rounded-full bg-fuchsia-600/10 blur-3xl pointer-events-none" />
+
+              <div className="relative">
+                <h2 className="font-extrabold text-xl sm:text-2xl lg:text-3xl text-white mb-2 sm:mb-3">
+                  Join our <GradientText>waitlist!</GradientText>
+                </h2>
+                <p className="text-gray-400 text-sm sm:text-base lg:text-lg max-w-md lg:max-w-lg mx-auto leading-relaxed mb-6 sm:mb-8">
+                  Sign up for our newsletter to receive the latest updates and insights straight to your inbox.
+                </p>
+
+                {submitted ? (
+                  <div className="flex items-center justify-center gap-3 py-4 rounded-2xl bg-emerald-500/10 border border-emerald-500/20">
+                    <CheckCircle2 className="w-5 h-5 text-emerald-400" />
+                    <span className="text-emerald-300 text-sm font-semibold">You&apos;re on the list! We&apos;ll be in touch.</span>
+                  </div>
+                ) : (
+                  <form onSubmit={handleSubmit} className="relative max-w-lg mx-auto">
+                    <div className="flex items-center gap-2 pl-5 pr-2 py-2 rounded-full bg-black/40 border border-white/10 focus-within:border-violet-500/40 transition-colors">
+                      <input
+                        type="email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        placeholder="Enter your email"
+                        required
+                        className="flex-1 bg-transparent text-sm sm:text-base text-white placeholder-gray-500 focus:outline-none min-w-0"
+                      />
+                      <button
+                        type="submit"
+                        className="group shrink-0 inline-flex items-center gap-2 px-5 sm:px-6 py-2.5 sm:py-3 rounded-full bg-white text-gray-900 font-bold text-sm hover:bg-gray-100 transition-all hover:shadow-lg hover:shadow-white/10"
+                      >
+                        <span>Join Waitlist</span>
+                        <Send className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                      </button>
+                    </div>
+                  </form>
+                )}
+
+                {/* Benefits row */}
+                <div className="mt-6 sm:mt-8 flex flex-wrap justify-center gap-2 sm:gap-3">
+                  {benefits.map(({ icon: Icon, text }) => (
+                    <div key={text} className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/5 border border-white/10">
+                      <Icon className="w-3.5 h-3.5 text-violet-400" />
+                      <span className="text-[11px] sm:text-xs text-gray-400 font-medium">{text}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Social icons */}
+          <div className="mt-10 sm:mt-12 flex items-center gap-3">
+            {socialLinks.map(({ icon: Icon, label, href }) => (
+              <a
+                key={label}
+                href={href}
+                aria-label={label}
+                className="group w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-white/5 hover:bg-gradient-to-br hover:from-violet-600 hover:to-fuchsia-600 border border-white/10 hover:border-transparent flex items-center justify-center transition-all hover:scale-110"
+              >
+                <Icon className="w-4 h-4 text-gray-400 group-hover:text-white transition-colors" />
+              </a>
+            ))}
+          </div>
+
+          {/* Bottom link back */}
+          <Link
+            to="/"
+            className="mt-8 sm:mt-10 inline-flex items-center gap-1.5 text-sm text-gray-500 hover:text-violet-400 transition-colors"
+          >
+            <ArrowUpRight className="w-3.5 h-3.5 rotate-[-135deg]" />
+            Back to home
+          </Link>
+        </div>
+      </section>
+
+      <HomeFooter />
+    </div>
+  );
+};
 
 export default Outreach;

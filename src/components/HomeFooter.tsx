@@ -39,7 +39,7 @@ const HomeFooter = () => (
           <div className="text-xs font-black tracking-[0.2em] uppercase text-white mb-5">Quick Links</div>
           <ul className="space-y-3 text-sm">
             {(["Courses", "Roadmap", "Mentorship", "FAQs"] as const).map((l) => (
-              <li key={l}><a href="#" className="text-gray-400 hover:text-violet-400 transition-colors inline-flex items-center gap-1.5 group">
+              <li key={l}><a href={l === "FAQs" ? "/#faqs" : "#"} className="text-gray-400 hover:text-violet-400 transition-colors inline-flex items-center gap-1.5 group">
                 <span className="w-0 group-hover:w-2 h-px bg-violet-400 transition-all" />
                 {l}
               </a></li>
